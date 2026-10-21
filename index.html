@@ -14,6 +14,7 @@
   --sun:#c8102e;
   --g1:#0f766e; --g1-soft:#e2f1ee;
   --g2:#b02a52; --g2-soft:#f8e7ed;
+  --df:#8a5a00; --df-soft:#f6ecd8;
   --chip:#f1ede7;
 }
 @media (prefers-color-scheme:dark){
@@ -22,6 +23,7 @@
     --sun:#ef4d63;
     --g1:#5cc6b6; --g1-soft:#16302c;
     --g2:#f0849f; --g2-soft:#3b1e28;
+    --df:#e2b55c; --df-soft:#33291a;
     --chip:#2a2724;
   }
 }
@@ -36,9 +38,12 @@ header{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
 h1{font-size:28px;line-height:1.2;margin:0 0 4px;font-weight:700}
 .sub{color:var(--muted);font-size:15px}
 
-.grand{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:12px}
+.grand{display:grid;grid-template-columns:1.25fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:12px}
+.gcol{padding:18px 20px}
+.gcol + .gcol{border-left:1px solid var(--line)}
 .grand .lbl{color:var(--muted);font-size:14px}
 .grand .big{font-size:34px;font-weight:700;line-height:1.15}
+.grand .mid{font-size:24px;font-weight:600;line-height:1.2;margin-top:6px}
 .grand .yen{color:var(--muted);font-size:16px}
 
 .rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 22px;padding:0 4px}
@@ -54,6 +59,7 @@ h1{font-size:28px;line-height:1.2;margin:0 0 4px;font-weight:700}
 .card .d{font-size:13px;color:var(--muted);margin-bottom:10px}
 .card .b{font-size:26px;font-weight:700;line-height:1.2}
 .card .y{font-size:15px;color:var(--muted)}
+.card .extra{margin-top:10px;padding-top:8px;border-top:1px solid color-mix(in srgb,var(--g2) 25%,transparent);font-size:14px;white-space:normal}
 
 section{margin-bottom:30px}
 h2{font-size:19px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
@@ -72,6 +78,8 @@ h2 .bar{width:6px;height:20px;border-radius:3px}
 .row.sub .bt{font-weight:500;color:var(--muted)}
 .row.total{border-top:2px solid var(--ink);font-weight:700}
 .row.total .bt{font-size:18px}
+.row.dfree{background:var(--df-soft);margin:0 -16px;padding-left:16px;padding-right:16px}
+.row.total.withdf{border-top-color:var(--df)}
 .approx{font-size:12px}
 
 .day{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px 6px;margin-bottom:12px}
@@ -81,6 +89,7 @@ h2 .bar{width:6px;height:20px;border-radius:3px}
 .tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;margin-right:6px;vertical-align:1px}
 .tag.g1{background:var(--g1-soft);color:var(--g1)}
 .tag.g2{background:var(--g2-soft);color:var(--g2)}
+.tag.df{background:var(--df-soft);color:var(--df)}
 .day-sum{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 2px}
 .pill{font-size:13px;padding:4px 10px;border-radius:10px;background:var(--chip)}
 .pill b{font-weight:600}
@@ -90,6 +99,8 @@ footer p{margin:0 0 6px}
 
 @media (max-width:520px){
   h1{font-size:24px}
+  .grand{grid-template-columns:1fr}
+  .gcol + .gcol{border-left:0;border-top:1px solid var(--line)}
   .cards{grid-template-columns:1fr}
   .grand .big{font-size:30px}
   .row{gap:2px 10px}
@@ -109,9 +120,16 @@ footer p{margin:0 0 6px}
   </header>
 
   <div class="grand">
-    <div class="lbl">รวมทั้งทริป</div>
-    <div class="big num" id="grandB"></div>
-    <div class="yen num" id="grandY"></div>
+    <div class="gcol">
+      <div class="lbl">รวมทั้งทริป · ไม่รวม duty free</div>
+      <div class="big num" id="grandB"></div>
+      <div class="yen num" id="grandY"></div>
+    </div>
+    <div class="gcol">
+      <div class="lbl">ถ้ารวม duty free ด้วย</div>
+      <div class="mid num" id="grandDfB"></div>
+      <div class="yen num" id="grandDfY"></div>
+    </div>
   </div>
 
   <label class="rate">อัตราแลกเปลี่ยน 1 เยน =
@@ -127,9 +145,10 @@ footer p{margin:0 0 6px}
     </div>
     <div class="card g2">
       <div class="t">ช้อปปิ้ง + ตั๋วเครื่องบิน</div>
-      <div class="d">แยกจากค่าเที่ยว</div>
+      <div class="d">ไม่รวม duty free</div>
       <div class="b num" id="g2B"></div>
       <div class="y num" id="g2Y"></div>
+      <div class="extra" id="g2Df"></div>
     </div>
   </div>
 
@@ -154,7 +173,9 @@ footer p{margin:0 0 6px}
   </section>
 
   <footer>
-    <p>ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ส่วนโรงแรม ตั๋วเครื่องบิน และบุฟเฟต์ปิ้งย่างวันแรกจ่ายเป็นบาท ช่องเยนของรายการเหล่านี้จึงเป็นค่าประมาณ (≈)</p>
+    <p>ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ยกเว้น Donki ที่ใช้ยอดตัดบัตรจริง</p>
+    <p>รายการที่จ่ายเป็นบาท (โรงแรม ตั๋วเครื่องบิน บุฟเฟต์ปิ้งย่าง ช้อปปิ้งเพิ่มวันที่ 7) ช่องเยนเป็นค่าประมาณ (≈)</p>
+    <p>Duty free แยกยอดไว้ เพราะส่วนใหญ่เป็นของคนอื่น</p>
     <p>ค่าโรงแรมเป็นยอดรวมภาษีที่จ่ายผ่าน Agoda แล้ว ไม่รวมภาษีอาบน้ำที่นิกโกที่จ่ายหน้าที่พัก (ประมาณ ฿32)</p>
   </footer>
 </div>
@@ -168,37 +189,38 @@ const HOTELS = [
 ];
 const FLIGHT_THB = 15000;
 
-// cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง
-// [cat, label, ยอดเยน[], ยอดที่จ่ายเป็นบาท (ถ้ามี)]
+// cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง · duty = duty free (แยกยอด)
+// yen = ยอดเยน, thb = ยอดที่จ่ายเป็นบาทจริง (มีทั้งคู่ = ใช้บาทตามยอดตัดบัตร ไม่แปลงด้วยอัตรา)
 const DAYS = [
   { n: 1, date: "จ. 12 ต.ค.", where: "โตเกียว", items: [
-    ["food", "ของกิน", [1150, 450, 300]],
-    ["food", "บุฟเฟต์ปิ้งย่าง", [], 1800],
-    ["trans", "ค่าเดินทาง", [850]],
-    ["shop", "ช้อปปิ้ง", [1300]] ] },
+    { cat: "food", label: "ของกิน", yen: [1150, 450, 300] },
+    { cat: "food", label: "บุฟเฟต์ปิ้งย่าง", thb: 1800 },
+    { cat: "trans", label: "ค่าเดินทาง", yen: [850] },
+    { cat: "shop", label: "ช้อปปิ้ง", yen: [1300] } ] },
   { n: 2, date: "อ. 13 ต.ค.", where: "โตเกียว", items: [
-    ["food", "ของกิน", [890, 670, 250, 2060]],
-    ["trans", "ค่าเดินทาง", [580]],
-    ["shop", "ช้อปปิ้ง", [4070, 3960]] ] },
+    { cat: "food", label: "ของกิน", yen: [890, 670, 250, 2060] },
+    { cat: "trans", label: "ค่าเดินทาง", yen: [580] },
+    { cat: "shop", label: "ช้อปปิ้ง", yen: [4070, 3960] } ] },
   { n: 3, date: "พ. 14 ต.ค.", where: "โตเกียว", items: [
-    ["food", "ของกิน", [800, 800, 800, 1400, 200]],
-    ["trans", "เช่าจักรยาน", [1500]] ] },
+    { cat: "food", label: "ของกิน", yen: [800, 800, 800, 1400, 200] },
+    { cat: "trans", label: "เช่าจักรยาน", yen: [1500] } ] },
   { n: 4, date: "พฤ. 15 ต.ค.", where: "โตเกียว → นิกโก", items: [
-    ["food", "ของกิน", [650, 1200, 400]],
-    ["trans", "ตั๋วรถไฟ", [550]],
-    ["bag", "ฝากกระเป๋า", [1200]] ] },
+    { cat: "food", label: "ของกิน", yen: [650, 1200, 400] },
+    { cat: "trans", label: "ตั๋วรถไฟ", yen: [550] },
+    { cat: "bag", label: "ฝากกระเป๋า", yen: [1200] } ] },
   { n: 5, date: "ศ. 16 ต.ค.", where: "นิกโก → โตเกียว", items: [
-    ["food", "ของกิน", [1350, 650, 150, 800, 1450]],
-    ["trans", "ตั๋วรถไฟ", [550, 280]] ] },
+    { cat: "food", label: "ของกิน", yen: [1350, 650, 150, 800, 1450] },
+    { cat: "trans", label: "ตั๋วรถไฟ", yen: [550, 280] } ] },
   { n: 6, date: "ส. 17 ต.ค.", where: "โตเกียว", items: [
-    ["food", "ของกิน", [3200, 500, 200, 1150, 400, 350]],
-    ["trans", "ค่ารถไฟ", [180, 200, 180]],
-    ["shop", "Donki", [16678]],
-    ["shop", "ขนม 7-Eleven", [1500]] ] },
+    { cat: "food", label: "ของกิน", yen: [3200, 500, 200, 1150, 400, 350] },
+    { cat: "trans", label: "ค่ารถไฟ", yen: [180, 200, 180] },
+    { cat: "shop", label: "Donki", yen: [16678], thb: 3645.65 },
+    { cat: "shop", label: "ขนม 7-Eleven", yen: [1500] } ] },
   { n: 7, date: "อา. 18 ต.ค.", where: "วันกลับ", items: [
-    ["food", "ของกิน (ซูชิ 2,100)", [1250, 2100, 400]],
-    ["trans", "ค่ารถไฟ", [660]],
-    ["shop", "Duty free", [30000]] ] },
+    { cat: "food", label: "ของกิน (ซูชิ 2,100)", yen: [1250, 2100, 400] },
+    { cat: "trans", label: "ค่ารถไฟ", yen: [660] },
+    { cat: "shop", label: "ช้อปปิ้งเพิ่ม", thb: 2537.73 },
+    { cat: "duty", label: "Duty free", yen: [30234] } ] },
 ];
 
 const sum = a => a.reduce((s, x) => s + x, 0);
@@ -214,19 +236,32 @@ function row(label, note, yen, baht, cls = "", approxYen = false) {
   </div>`;
 }
 const head = `<div class="row head"><div></div><div class="y">เยน</div><div class="bt">บาท</div></div>`;
+const TAGS = {
+  shop: '<span class="tag g2">ช้อป</span>',
+  duty: '<span class="tag df">แยกยอด</span>',
+  trip: '<span class="tag g1">เที่ยว</span>',
+};
 
 function render() {
   const r = parseFloat($("rate").value) || 0.2122;
-  const all = DAYS.flatMap(d => d.items.map(([cat, label, a, thb = 0]) => ({ day: d.n, cat, label, yen: sum(a), thb })));
-  // ยอดเทียบเป็นเยน / บาท ของรายการชุดหนึ่ง (รายการที่จ่ายเป็นบาทนับตามจริง)
-  const tot = list => ({
-    y: sum(list.map(i => i.yen + i.thb / r)),
-    b: sum(list.map(i => i.yen * r + i.thb)),
-    thb: sum(list.map(i => i.thb)),
-  });
-  const cat = c => tot(all.filter(i => i.cat === c));
 
-  const food = cat("food"), trans = cat("trans"), bag = cat("bag"), shop = cat("shop");
+  // y = ยอดเยน (หรือประมาณจากบาท), b = ยอดบาท (ยอดจริงถ้ามี ไม่งั้นแปลงจากเยน)
+  const all = DAYS.flatMap(d => d.items.map(it => {
+    const parts = it.yen || [];
+    const yen = sum(parts);
+    const hasYen = parts.length > 0, hasThb = it.thb != null;
+    const note = hasThb ? (hasYen ? "ยอดตัดบัตรจริง" : "จ่ายเป็นบาท")
+      : parts.length > 1 ? parts.map(x => x.toLocaleString("en-US")).join(" + ") : "";
+    return { day: d.n, cat: it.cat, label: it.label, note,
+      y: hasYen ? yen : it.thb / r,
+      b: hasThb ? it.thb : yen * r,
+      approx: !hasYen };
+  }));
+  const tot = list => ({ y: sum(list.map(i => i.y)), b: sum(list.map(i => i.b)), approx: list.some(i => i.approx) });
+  const cat = c => tot(all.filter(i => i.cat === c));
+  const itemRow = (i, label, note) => row(label, note, i.y, i.b, i.cat === "duty" ? "dfree" : "", i.approx);
+
+  const food = cat("food"), trans = cat("trans"), bag = cat("bag"), shop = cat("shop"), duty = cat("duty");
   const hotel = sum(HOTELS.map(h => h.thb));
   const nights = sum(HOTELS.map(h => h.nights));
 
@@ -235,16 +270,19 @@ function render() {
 
   $("grandB").textContent = fb(g1B + g2B);
   $("grandY").textContent = "≈ " + fy(g1Y + g2Y);
+  $("grandDfB").textContent = fb(g1B + g2B + duty.b);
+  $("grandDfY").textContent = "≈ " + fy(g1Y + g2Y + duty.y);
   $("g1B").textContent = fb(g1B);
   $("g1Y").textContent = "≈ " + fy(g1Y);
   $("g2B").textContent = fb(g2B);
   $("g2Y").textContent = "≈ " + fy(g2Y);
+  $("g2Df").innerHTML = `รวม duty free ${fy(duty.y)} แล้ว = <b class="num">${fb(g2B + duty.b)}</b>`;
 
   $("g1Table").innerHTML = head
-    + row("🍜 ของกิน", food.thb ? `7 วัน · รวมบุฟเฟต์ปิ้งย่าง ${fb(food.thb)} ที่จ่ายเป็นบาท` : "7 วัน", food.y, food.b, "", food.thb > 0)
-    + row("🚃 ค่าเดินทาง", "รถไฟ + เช่าจักรยาน", trans.y, trans.b, "", trans.thb > 0)
-    + row("รวมของกิน + ค่าเดินทาง", "", food.y + trans.y, food.b + trans.b, "sub", food.thb + trans.thb > 0)
-    + row("🧳 ฝากกระเป๋า", "วันที่ 4", bag.y, bag.b, "", bag.thb > 0)
+    + row("🍜 ของกิน", "7 วัน · รวมบุฟเฟต์ปิ้งย่างที่จ่ายเป็นบาท", food.y, food.b, "", food.approx)
+    + row("🚃 ค่าเดินทาง", "รถไฟ + เช่าจักรยาน", trans.y, trans.b, "", trans.approx)
+    + row("รวมของกิน + ค่าเดินทาง", "", food.y + trans.y, food.b + trans.b, "sub", food.approx || trans.approx)
+    + row("🧳 ฝากกระเป๋า", "วันที่ 4", bag.y, bag.b, "", bag.approx)
     + row("🏨 โรงแรม", `${nights} คืน · จ่ายผ่าน Agoda เป็นบาท`, hotel / r, hotel, "", true)
     + row("รวมค่าเที่ยว", "", g1Y, g1B, "total", true);
 
@@ -252,30 +290,25 @@ function render() {
     + HOTELS.map(h => row(h.name, `${h.where} · ${h.dates} · ${h.nights} คืน`, h.thb / r, h.thb, "", true)).join("")
     + row("รวมโรงแรม", "", hotel / r, hotel, "total", true);
 
-  const shops = all.filter(i => i.cat === "shop");
+  const dutyItems = all.filter(i => i.cat === "duty");
   $("g2Table").innerHTML = head
-    + shops.map(i => row("🛍️ " + i.label, "วันที่ " + i.day, i.yen + i.thb / r, i.yen * r + i.thb, "", i.thb > 0)).join("")
-    + row("รวมช้อปปิ้ง", "", shop.y, shop.b, "sub", shop.thb > 0)
+    + all.filter(i => i.cat === "shop").map(i => itemRow(i, "🛍️ " + i.label, ["วันที่ " + i.day, i.note].filter(Boolean).join(" · "))).join("")
+    + row("รวมช้อปปิ้ง (ไม่รวม duty free)", "", shop.y, shop.b, "sub", shop.approx)
     + row("✈️ ตั๋วเครื่องบิน", "จ่ายเป็นบาท", FLIGHT_THB / r, FLIGHT_THB, "", true)
-    + row("รวมช้อปปิ้ง + ตั๋วเครื่องบิน", "", g2Y, g2B, "total", true);
+    + row("รวม · ไม่มี duty free", "", g2Y, g2B, "total", true)
+    + dutyItems.map(i => itemRow(i, "🎁 " + i.label, `วันที่ ${i.day} · ส่วนใหญ่เป็นของคนอื่น`)).join("")
+    + row("รวม · มี duty free", "", g2Y + duty.y, g2B + duty.b, "total withdf", true);
 
   $("days").innerHTML = DAYS.map(d => {
     const items = all.filter(i => i.day === d.n);
-    const trip = tot(items.filter(i => i.cat !== "shop"));
+    const trip = tot(items.filter(i => !["shop", "duty"].includes(i.cat)));
     const shopDay = tot(items.filter(i => i.cat === "shop"));
-    const pill = (name, t) => `<span class="pill">${name} <b class="num">${t.thb ? "≈" : ""}${fy(t.y)} · ${fb(t.b)}</b></span>`;
-    const rows = d.items.map(([c, label, a, thb = 0]) => {
-      const t = sum(a);
-      const tag = c === "shop" ? '<span class="tag g2">ช้อป</span>' : '<span class="tag g1">เที่ยว</span>';
-      const note = thb ? "จ่ายเป็นบาท" : a.length > 1 ? a.map(x => x.toLocaleString("en-US")).join(" + ") : "";
-      return row(tag + label, note, t + thb / r, t * r + thb, "", thb > 0);
-    }).join("");
+    const dutyDay = tot(items.filter(i => i.cat === "duty"));
+    const pill = (name, t) => t.b ? `<span class="pill">${name} <b class="num">${t.approx ? "≈" : ""}${fy(t.y)} · ${fb(t.b)}</b></span>` : "";
+    const rows = items.map(i => itemRow(i, (TAGS[i.cat] || TAGS.trip) + i.label, i.note)).join("");
     return `<div class="day">
       <div class="day-h"><span class="n">วันที่ ${d.n}</span><span class="w">${d.date} · ${d.where}</span></div>
-      <div class="day-sum">
-        ${pill("ค่าเที่ยว", trip)}
-        ${shopDay.b ? pill("ช้อป", shopDay) : ""}
-      </div>
+      <div class="day-sum">${pill("ค่าเที่ยว", trip)}${pill("ช้อป", shopDay)}${pill("duty free", dutyDay)}</div>
       ${head}${rows}
     </div>`;
   }).join("");
