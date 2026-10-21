@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ทริปญี่ปุ่น ต.ค. 69</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ef; --card:#ffffff; --ink:#1c1a18; --muted:#726c65; --line:#e8e3dc;
+  --sun:#c8102e;
+  --g1:#0f766e; --g1-soft:#e2f1ee;
+  --g2:#b02a52; --g2-soft:#f8e7ed;
+  --chip:#f1ede7;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#131211; --card:#1d1b19; --ink:#f2eee9; --muted:#a39d95; --line:#34302c;
+    --sun:#ef4d63;
+    --g1:#5cc6b6; --g1-soft:#16302c;
+    --g2:#f0849f; --g2-soft:#3b1e28;
+    --chip:#2a2724;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 56px}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+header{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
+.sun{flex:none;width:44px;height:44px;border-radius:50%;background:var(--sun);margin-top:4px}
+h1{font-size:28px;line-height:1.2;margin:0 0 4px;font-weight:700}
+.sub{color:var(--muted);font-size:15px}
+
+.grand{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:12px}
+.grand .lbl{color:var(--muted);font-size:14px}
+.grand .big{font-size:34px;font-weight:700;line-height:1.15}
+.grand .yen{color:var(--muted);font-size:16px}
+
+.rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 22px;padding:0 4px}
+.rate input{width:92px;font:inherit;font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:30px}
+.card{border-radius:18px;padding:16px 18px}
+.card.g1{background:var(--g1-soft)}
+.card.g2{background:var(--g2-soft)}
+.card .t{font-weight:600;font-size:16px}
+.card.g1 .t{color:var(--g1)}
+.card.g2 .t{color:var(--g2)}
+.card .d{font-size:13px;color:var(--muted);margin-bottom:10px}
+.card .b{font-size:26px;font-weight:700;line-height:1.2}
+.card .y{font-size:15px;color:var(--muted)}
+
+section{margin-bottom:30px}
+h2{font-size:19px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+h2 .bar{width:6px;height:20px;border-radius:3px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 16px}
+
+.row{display:grid;grid-template-columns:1fr auto auto;gap:4px 14px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .l{min-width:0}
+.row .l small{display:block;color:var(--muted);font-size:13px;line-height:1.4}
+.row .y{color:var(--muted);text-align:right;min-width:72px}
+.row .bt{text-align:right;font-weight:600;min-width:86px}
+.row.head{padding:8px 0 4px;font-size:12px;color:var(--muted)}
+.row.head .bt{font-weight:400}
+.row.sub{color:var(--muted)}
+.row.sub .bt{font-weight:500;color:var(--muted)}
+.row.total{border-top:2px solid var(--ink);font-weight:700}
+.row.total .bt{font-size:18px}
+.approx{font-size:12px}
+
+.day{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px 6px;margin-bottom:12px}
+.day-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.day-h .n{font-weight:700;font-size:17px}
+.day-h .w{color:var(--muted);font-size:14px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;margin-right:6px;vertical-align:1px}
+.tag.g1{background:var(--g1-soft);color:var(--g1)}
+.tag.g2{background:var(--g2-soft);color:var(--g2)}
+.day-sum{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 2px}
+.pill{font-size:13px;padding:4px 10px;border-radius:10px;background:var(--chip)}
+.pill b{font-weight:600}
+
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+footer p{margin:0 0 6px}
+
+@media (max-width:520px){
+  h1{font-size:24px}
+  .cards{grid-template-columns:1fr}
+  .grand .big{font-size:30px}
+  .row{gap:2px 10px}
+  .row .y{min-width:62px;font-size:14px}
+  .row .bt{min-width:78px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="sun" aria-hidden="true"></div>
+    <div>
+      <h1>ค่าใช้จ่ายทริปญี่ปุ่น</h1>
+      <div class="sub">โตเกียว · นิกโก · <span class="num">12–18 ต.ค. 2569</span> · <span class="num">7 วัน 6 คืน</span></div>
+    </div>
+  </header>
+
+  <div class="grand">
+    <div class="lbl">รวมทั้งทริป</div>
+    <div class="big num" id="grandB"></div>
+    <div class="yen num" id="grandY"></div>
+  </div>
+
+  <label class="rate">อัตราแลกเปลี่ยน 1 เยน =
+    <input id="rate" type="number" step="0.0001" min="0.01" value="0.2122" inputmode="decimal"> บาท
+  </label>
+
+  <div class="cards">
+    <div class="card g1">
+      <div class="t">ค่าเที่ยว</div>
+      <div class="d">ของกิน + ค่าเดินทาง + โรงแรม</div>
+      <div class="b num" id="g1B"></div>
+      <div class="y num" id="g1Y"></div>
+    </div>
+    <div class="card g2">
+      <div class="t">ช้อปปิ้ง + ตั๋วเครื่องบิน</div>
+      <div class="d">แยกจากค่าเที่ยว</div>
+      <div class="b num" id="g2B"></div>
+      <div class="y num" id="g2Y"></div>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="bar" style="background:var(--g1)"></span>ค่าเที่ยว: กิน + เดินทาง + โรงแรม</h2>
+    <div class="box" id="g1Table"></div>
+  </section>
+
+  <section>
+    <h2><span class="bar" style="background:var(--g1)"></span>โรงแรม (Agoda 4 การจอง)</h2>
+    <div class="box" id="hotelTable"></div>
+  </section>
+
+  <section>
+    <h2><span class="bar" style="background:var(--g2)"></span>ช้อปปิ้ง + ตั๋วเครื่องบิน</h2>
+    <div class="box" id="g2Table"></div>
+  </section>
+
+  <section>
+    <h2><span class="bar" style="background:var(--ink)"></span>รายวัน</h2>
+    <div id="days"></div>
+  </section>
+
+  <footer>
+    <p>ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ส่วนโรงแรมกับตั๋วเครื่องบินจ่ายเป็นบาท ช่องเยนจึงเป็นค่าประมาณ (≈)</p>
+    <p>ค่าโรงแรมเป็นยอดรวมภาษีที่จ่ายผ่าน Agoda แล้ว ไม่รวมภาษีอาบน้ำที่นิกโกที่จ่ายหน้าที่พัก (ประมาณ ฿32)</p>
+  </footer>
+</div>
+
+<script>
+const HOTELS = [
+  { name: "Shinjuku Kuyakusho-mae Capsule Hotel", where: "ชินจูกุ", dates: "12–14 ต.ค.", nights: 2, thb: 1715.66 },
+  { name: "Shinjuku Kuyakusho-mae Capsule Hotel", where: "ชินจูกุ", dates: "14–15 ต.ค.", nights: 1, thb: 751.34 },
+  { name: "K's House Nikko – Kinugawa Onsen Hostel", where: "นิกโก", dates: "15–16 ต.ค.", nights: 1, thb: 791.42 },
+  { name: "Hotel Plus Hostel TOKYO ASAKUSA 1", where: "อาซากุสะ", dates: "16–18 ต.ค.", nights: 2, thb: 1958.95 },
+];
+const FLIGHT_THB = 15000;
+
+// cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง
+const DAYS = [
+  { n: 1, date: "จ. 12 ต.ค.", where: "โตเกียว", items: [
+    ["food", "ของกิน", [1150, 450, 300]],
+    ["trans", "ค่าเดินทาง", [850]],
+    ["shop", "ช้อปปิ้ง", [1300]] ] },
+  { n: 2, date: "อ. 13 ต.ค.", where: "โตเกียว", items: [
+    ["food", "ของกิน", [890, 670, 250, 2060]],
+    ["trans", "ค่าเดินทาง", [580]],
+    ["shop", "ช้อปปิ้ง", [4070, 3960]] ] },
+  { n: 3, date: "พ. 14 ต.ค.", where: "โตเกียว", items: [
+    ["food", "ของกิน", [800, 800, 800, 1400, 200]],
+    ["trans", "เช่าจักรยาน", [1500]] ] },
+  { n: 4, date: "พฤ. 15 ต.ค.", where: "โตเกียว → นิกโก", items: [
+    ["food", "ของกิน", [650, 1200, 400]],
+    ["trans", "ตั๋วรถไฟ", [550]],
+    ["bag", "ฝากกระเป๋า", [1200]] ] },
+  { n: 5, date: "ศ. 16 ต.ค.", where: "นิกโก → โตเกียว", items: [
+    ["food", "ของกิน", [1350, 650, 150, 800, 1450]],
+    ["trans", "ตั๋วรถไฟ", [550, 280]] ] },
+  { n: 6, date: "ส. 17 ต.ค.", where: "โตเกียว", items: [
+    ["food", "ของกิน", [3200, 500, 200, 1150, 400, 350]],
+    ["trans", "ค่ารถไฟ", [180, 200, 180]],
+    ["shop", "Donki", [16678]],
+    ["shop", "ขนม 7-Eleven", [1500]] ] },
+  { n: 7, date: "อา. 18 ต.ค.", where: "วันกลับ", items: [
+    ["food", "ของกิน (ซูชิ 2,100)", [1250, 2100, 400]],
+    ["trans", "ค่ารถไฟ", [660]],
+    ["shop", "Duty free", [30000]] ] },
+];
+
+const sum = a => a.reduce((s, x) => s + x, 0);
+const fy = n => "¥" + Math.round(n).toLocaleString("en-US");
+const fb = n => "฿" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const $ = id => document.getElementById(id);
+
+function row(label, note, yen, baht, cls = "", approxYen = false) {
+  return `<div class="row ${cls}">
+    <div class="l">${label}${note ? `<small>${note}</small>` : ""}</div>
+    <div class="y num">${approxYen ? '<span class="approx">≈</span>' : ""}${fy(yen)}</div>
+    <div class="bt num">${fb(baht)}</div>
+  </div>`;
+}
+const head = `<div class="row head"><div></div><div class="y">เยน</div><div class="bt">บาท</div></div>`;
+
+function render() {
+  const r = parseFloat($("rate").value) || 0.2122;
+  const all = DAYS.flatMap(d => d.items.map(([cat, label, a]) => ({ day: d.n, cat, label, yen: sum(a) })));
+  const catYen = c => sum(all.filter(i => i.cat === c).map(i => i.yen));
+
+  const food = catYen("food"), trans = catYen("trans"), bag = catYen("bag"), shop = catYen("shop");
+  const hotel = sum(HOTELS.map(h => h.thb));
+  const nights = sum(HOTELS.map(h => h.nights));
+
+  const g1B = (food + trans + bag) * r + hotel, g1Y = food + trans + bag + hotel / r;
+  const g2B = shop * r + FLIGHT_THB, g2Y = shop + FLIGHT_THB / r;
+
+  $("grandB").textContent = fb(g1B + g2B);
+  $("grandY").textContent = "≈ " + fy(g1Y + g2Y);
+  $("g1B").textContent = fb(g1B);
+  $("g1Y").textContent = "≈ " + fy(g1Y);
+  $("g2B").textContent = fb(g2B);
+  $("g2Y").textContent = "≈ " + fy(g2Y);
+
+  $("g1Table").innerHTML = head
+    + row("🍜 ของกิน", "7 วัน", food, food * r)
+    + row("🚃 ค่าเดินทาง", "รถไฟ + เช่าจักรยาน", trans, trans * r)
+    + row("รวมของกิน + ค่าเดินทาง", "", food + trans, (food + trans) * r, "sub")
+    + row("🧳 ฝากกระเป๋า", "วันที่ 4", bag, bag * r)
+    + row("🏨 โรงแรม", `${nights} คืน · จ่ายผ่าน Agoda เป็นบาท`, hotel / r, hotel, "", true)
+    + row("รวมค่าเที่ยว", "", g1Y, g1B, "total", true);
+
+  $("hotelTable").innerHTML = head
+    + HOTELS.map(h => row(h.name, `${h.where} · ${h.dates} · ${h.nights} คืน`, h.thb / r, h.thb, "", true)).join("")
+    + row("รวมโรงแรม", "", hotel / r, hotel, "total", true);
+
+  const shops = all.filter(i => i.cat === "shop");
+  $("g2Table").innerHTML = head
+    + shops.map(i => row("🛍️ " + i.label, "วันที่ " + i.day, i.yen, i.yen * r)).join("")
+    + row("รวมช้อปปิ้ง", "", shop, shop * r, "sub")
+    + row("✈️ ตั๋วเครื่องบิน", "จ่ายเป็นบาท", FLIGHT_THB / r, FLIGHT_THB, "", true)
+    + row("รวมช้อปปิ้ง + ตั๋วเครื่องบิน", "", g2Y, g2B, "total", true);
+
+  $("days").innerHTML = DAYS.map(d => {
+    const tripYen = sum(d.items.filter(i => i[0] !== "shop").map(i => sum(i[2])));
+    const shopYen = sum(d.items.filter(i => i[0] === "shop").map(i => sum(i[2])));
+    const rows = d.items.map(([cat, label, a]) => {
+      const t = sum(a);
+      const tag = cat === "shop" ? '<span class="tag g2">ช้อป</span>' : '<span class="tag g1">เที่ยว</span>';
+      const note = a.length > 1 ? a.map(x => x.toLocaleString("en-US")).join(" + ") : "";
+      return row(tag + label, note, t, t * r);
+    }).join("");
+    return `<div class="day">
+      <div class="day-h"><span class="n">วันที่ ${d.n}</span><span class="w">${d.date} · ${d.where}</span></div>
+      <div class="day-sum">
+        <span class="pill">ค่าเที่ยว <b class="num">${fy(tripYen)} · ${fb(tripYen * r)}</b></span>
+        ${shopYen ? `<span class="pill">ช้อป <b class="num">${fy(shopYen)} · ${fb(shopYen * r)}</b></span>` : ""}
+      </div>
+      ${head}${rows}
+    </div>`;
+  }).join("");
+}
+
+$("rate").addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
