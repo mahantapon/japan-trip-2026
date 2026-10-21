@@ -154,7 +154,7 @@ footer p{margin:0 0 6px}
   </section>
 
   <footer>
-    <p>ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ส่วนโรงแรมกับตั๋วเครื่องบินจ่ายเป็นบาท ช่องเยนจึงเป็นค่าประมาณ (≈)</p>
+    <p>ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ส่วนโรงแรม ตั๋วเครื่องบิน และบุฟเฟต์ปิ้งย่างวันแรกจ่ายเป็นบาท ช่องเยนของรายการเหล่านี้จึงเป็นค่าประมาณ (≈)</p>
     <p>ค่าโรงแรมเป็นยอดรวมภาษีที่จ่ายผ่าน Agoda แล้ว ไม่รวมภาษีอาบน้ำที่นิกโกที่จ่ายหน้าที่พัก (ประมาณ ฿32)</p>
   </footer>
 </div>
@@ -169,9 +169,11 @@ const HOTELS = [
 const FLIGHT_THB = 15000;
 
 // cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง
+// [cat, label, ยอดเยน[], ยอดที่จ่ายเป็นบาท (ถ้ามี)]
 const DAYS = [
   { n: 1, date: "จ. 12 ต.ค.", where: "โตเกียว", items: [
     ["food", "ของกิน", [1150, 450, 300]],
+    ["food", "บุฟเฟต์ปิ้งย่าง", [], 1800],
     ["trans", "ค่าเดินทาง", [850]],
     ["shop", "ช้อปปิ้ง", [1300]] ] },
   { n: 2, date: "อ. 13 ต.ค.", where: "โตเกียว", items: [
@@ -215,15 +217,21 @@ const head = `<div class="row head"><div></div><div class="y">เยน</div><di
 
 function render() {
   const r = parseFloat($("rate").value) || 0.2122;
-  const all = DAYS.flatMap(d => d.items.map(([cat, label, a]) => ({ day: d.n, cat, label, yen: sum(a) })));
-  const catYen = c => sum(all.filter(i => i.cat === c).map(i => i.yen));
+  const all = DAYS.flatMap(d => d.items.map(([cat, label, a, thb = 0]) => ({ day: d.n, cat, label, yen: sum(a), thb })));
+  // ยอดเทียบเป็นเยน / บาท ของรายการชุดหนึ่ง (รายการที่จ่ายเป็นบาทนับตามจริง)
+  const tot = list => ({
+    y: sum(list.map(i => i.yen + i.thb / r)),
+    b: sum(list.map(i => i.yen * r + i.thb)),
+    thb: sum(list.map(i => i.thb)),
+  });
+  const cat = c => tot(all.filter(i => i.cat === c));
 
-  const food = catYen("food"), trans = catYen("trans"), bag = catYen("bag"), shop = catYen("shop");
+  const food = cat("food"), trans = cat("trans"), bag = cat("bag"), shop = cat("shop");
   const hotel = sum(HOTELS.map(h => h.thb));
   const nights = sum(HOTELS.map(h => h.nights));
 
-  const g1B = (food + trans + bag) * r + hotel, g1Y = food + trans + bag + hotel / r;
-  const g2B = shop * r + FLIGHT_THB, g2Y = shop + FLIGHT_THB / r;
+  const g1B = food.b + trans.b + bag.b + hotel, g1Y = food.y + trans.y + bag.y + hotel / r;
+  const g2B = shop.b + FLIGHT_THB, g2Y = shop.y + FLIGHT_THB / r;
 
   $("grandB").textContent = fb(g1B + g2B);
   $("grandY").textContent = "≈ " + fy(g1Y + g2Y);
@@ -233,10 +241,10 @@ function render() {
   $("g2Y").textContent = "≈ " + fy(g2Y);
 
   $("g1Table").innerHTML = head
-    + row("🍜 ของกิน", "7 วัน", food, food * r)
-    + row("🚃 ค่าเดินทาง", "รถไฟ + เช่าจักรยาน", trans, trans * r)
-    + row("รวมของกิน + ค่าเดินทาง", "", food + trans, (food + trans) * r, "sub")
-    + row("🧳 ฝากกระเป๋า", "วันที่ 4", bag, bag * r)
+    + row("🍜 ของกิน", food.thb ? `7 วัน · รวมบุฟเฟต์ปิ้งย่าง ${fb(food.thb)} ที่จ่ายเป็นบาท` : "7 วัน", food.y, food.b, "", food.thb > 0)
+    + row("🚃 ค่าเดินทาง", "รถไฟ + เช่าจักรยาน", trans.y, trans.b, "", trans.thb > 0)
+    + row("รวมของกิน + ค่าเดินทาง", "", food.y + trans.y, food.b + trans.b, "sub", food.thb + trans.thb > 0)
+    + row("🧳 ฝากกระเป๋า", "วันที่ 4", bag.y, bag.b, "", bag.thb > 0)
     + row("🏨 โรงแรม", `${nights} คืน · จ่ายผ่าน Agoda เป็นบาท`, hotel / r, hotel, "", true)
     + row("รวมค่าเที่ยว", "", g1Y, g1B, "total", true);
 
@@ -246,25 +254,27 @@ function render() {
 
   const shops = all.filter(i => i.cat === "shop");
   $("g2Table").innerHTML = head
-    + shops.map(i => row("🛍️ " + i.label, "วันที่ " + i.day, i.yen, i.yen * r)).join("")
-    + row("รวมช้อปปิ้ง", "", shop, shop * r, "sub")
+    + shops.map(i => row("🛍️ " + i.label, "วันที่ " + i.day, i.yen + i.thb / r, i.yen * r + i.thb, "", i.thb > 0)).join("")
+    + row("รวมช้อปปิ้ง", "", shop.y, shop.b, "sub", shop.thb > 0)
     + row("✈️ ตั๋วเครื่องบิน", "จ่ายเป็นบาท", FLIGHT_THB / r, FLIGHT_THB, "", true)
     + row("รวมช้อปปิ้ง + ตั๋วเครื่องบิน", "", g2Y, g2B, "total", true);
 
   $("days").innerHTML = DAYS.map(d => {
-    const tripYen = sum(d.items.filter(i => i[0] !== "shop").map(i => sum(i[2])));
-    const shopYen = sum(d.items.filter(i => i[0] === "shop").map(i => sum(i[2])));
-    const rows = d.items.map(([cat, label, a]) => {
+    const items = all.filter(i => i.day === d.n);
+    const trip = tot(items.filter(i => i.cat !== "shop"));
+    const shopDay = tot(items.filter(i => i.cat === "shop"));
+    const pill = (name, t) => `<span class="pill">${name} <b class="num">${t.thb ? "≈" : ""}${fy(t.y)} · ${fb(t.b)}</b></span>`;
+    const rows = d.items.map(([c, label, a, thb = 0]) => {
       const t = sum(a);
-      const tag = cat === "shop" ? '<span class="tag g2">ช้อป</span>' : '<span class="tag g1">เที่ยว</span>';
-      const note = a.length > 1 ? a.map(x => x.toLocaleString("en-US")).join(" + ") : "";
-      return row(tag + label, note, t, t * r);
+      const tag = c === "shop" ? '<span class="tag g2">ช้อป</span>' : '<span class="tag g1">เที่ยว</span>';
+      const note = thb ? "จ่ายเป็นบาท" : a.length > 1 ? a.map(x => x.toLocaleString("en-US")).join(" + ") : "";
+      return row(tag + label, note, t + thb / r, t * r + thb, "", thb > 0);
     }).join("");
     return `<div class="day">
       <div class="day-h"><span class="n">วันที่ ${d.n}</span><span class="w">${d.date} · ${d.where}</span></div>
       <div class="day-sum">
-        <span class="pill">ค่าเที่ยว <b class="num">${fy(tripYen)} · ${fb(tripYen * r)}</b></span>
-        ${shopYen ? `<span class="pill">ช้อป <b class="num">${fy(shopYen)} · ${fb(shopYen * r)}</b></span>` : ""}
+        ${pill("ค่าเที่ยว", trip)}
+        ${shopDay.b ? pill("ช้อป", shopDay) : ""}
       </div>
       ${head}${rows}
     </div>`;
