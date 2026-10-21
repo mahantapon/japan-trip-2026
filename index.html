@@ -14,8 +14,8 @@
   color-scheme:light dark;
   --bg:#fbf4e8; --bg2:#f4e4cb; --card:#fffdf8; --ink:#2c1f17; --muted:#7a695b; --line:#ecdcc4;
   /* สีใบไม้เปลี่ยนสี: โมมิจิ(แดง) / คาคิ(ลูกพลับ) / อิโจ(แปะก๊วย) / มอสส์ / เกาลัด / มะเขือม่วง / ฟ้าใส */
-  --momiji:#c62828; --kaki:#e8731a; --icho:#dfa200; --moss:#6b8a35; --kuri:#8a5a32; --nasu:#8c3a5e; --sora:#2e6c9b;
-  --food:var(--kaki); --trans:var(--moss); --bag:var(--kuri); --hotel:var(--nasu); --shop:var(--momiji); --flight:var(--sora); --duty:var(--icho);
+  --momiji:#c62828; --kaki:#e8731a; --icho:#dfa200; --moss:#6b8a35; --kuri:#8a5a32; --nasu:#8c3a5e; --sora:#2e6c9b; --teal:#1e8a86;
+  --food:var(--kaki); --trans:var(--moss); --bag:var(--kuri); --hotel:var(--nasu); --shop:var(--momiji); --flight:var(--sora); --duty:var(--icho); --net:var(--teal);
   --hero1:#8f1d1d; --hero2:#d6401a; --hero3:#f0932a;
   --shadow:0 1px 0 rgba(120,80,40,.05),0 10px 28px -14px rgba(120,60,20,.35);
   --serif:"Noto Serif Thai","Shippori Mincho",Georgia,serif;
@@ -25,7 +25,7 @@
 @media (prefers-color-scheme:dark){
   :root{
     --bg:#16100d; --bg2:#1e1511; --card:#241a15; --ink:#f6eadb; --muted:#b9a794; --line:#3b2c22;
-    --momiji:#ff7a6b; --kaki:#ff9a4d; --icho:#f2c94c; --moss:#a6c86a; --kuri:#d1a074; --nasu:#e07ea5; --sora:#6fb6ea;
+    --momiji:#ff7a6b; --kaki:#ff9a4d; --icho:#f2c94c; --moss:#a6c86a; --kuri:#d1a074; --nasu:#e07ea5; --sora:#6fb6ea; --teal:#5fcdc4;
     --hero1:#5a1313; --hero2:#a42d14; --hero3:#c8691b;
     --shadow:0 10px 28px -14px rgba(0,0,0,.7);
   }
@@ -84,7 +84,6 @@ h1{font-family:var(--serif);font-weight:700;font-size:31px;line-height:1.25;marg
 .bx{grid-column:span 2;position:relative;overflow:hidden;border-radius:20px;padding:14px 16px;
   border:1px solid color-mix(in srgb,var(--c) 32%,var(--line));
   background:linear-gradient(160deg,color-mix(in srgb,var(--c) 17%,var(--card)),color-mix(in srgb,var(--c) 6%,var(--card)))}
-.bx:nth-child(n+4){grid-column:span 3}
 .bx .deco{position:absolute;right:8px;bottom:-4px;font-size:54px;opacity:.2;pointer-events:none}
 .bx .t{font-family:var(--serif);font-weight:700;font-size:15.5px;line-height:1.35;color:color-mix(in srgb,var(--c) 62%,var(--ink))}
 .kj{font-family:var(--kanji);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);margin-left:6px}
@@ -160,8 +159,7 @@ footer p{margin:0 0 6px}
   .grand{margin:-48px 6px 14px}
   .big{font-size:34px}
   .boxes{grid-template-columns:repeat(2,1fr);gap:10px}
-  .bx,.bx:nth-child(n+4){grid-column:span 1}
-  .bx:nth-child(5){grid-column:span 2}
+  .bx{grid-column:span 1}
   .groups{grid-template-columns:1fr}
   .duty{grid-template-columns:auto 1fr}
   .duty-amt{grid-column:1/-1;text-align:left;display:flex;gap:10px;align-items:baseline}
@@ -216,7 +214,7 @@ footer p{margin:0 0 6px}
 
   <div class="groups">
     <div class="grp" style="--c:var(--kaki)">
-      <span>🍂 ค่าเที่ยว<small>กิน + เดินทาง + โรงแรม</small></span>
+      <span>🍂 ค่าเที่ยว<small>กิน + เดินทาง + โรงแรม + เน็ต</small></span>
       <span class="r num"><b id="g1B"></b><small id="g1Y"></small></span>
     </div>
     <div class="grp" style="--c:var(--momiji)">
@@ -259,8 +257,9 @@ footer p{margin:0 0 6px}
 
   <footer>
     <p>🍁 ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ยกเว้น Donki ที่ใช้ยอดตัดบัตรจริง</p>
-    <p>🍂 รายการที่จ่ายเป็นบาท (โรงแรม ตั๋วเครื่องบิน บุฟเฟต์ปิ้งย่าง ช้อปปิ้งเพิ่มวันที่ 7) ช่องเยนเป็นค่าประมาณ (≈)</p>
+    <p>🍂 รายการที่จ่ายเป็นบาท (โรงแรม ตั๋วเครื่องบิน Tokyo Wide Pass ค่าเน็ต บุฟเฟต์ปิ้งย่าง ช้อปปิ้งเพิ่มวันที่ 7) ช่องเยนเป็นค่าประมาณ (≈)</p>
     <p>🎁 Duty free แยกบัญชีต่างหาก ไม่รวมในยอดทริป เพราะส่วนใหญ่เป็นของคนอื่น</p>
+    <p>🗓️ ยอดรายวันไม่รวมค่าโรงแรม ตั๋วเครื่องบิน Tokyo Wide Pass และค่าเน็ต เพราะแยกไว้ในตารางด้านบน</p>
     <p>🏨 ค่าโรงแรมเป็นยอดรวมภาษีที่จ่ายผ่าน Agoda แล้ว ไม่รวมภาษีอาบน้ำที่นิกโกที่จ่ายหน้าที่พัก (ประมาณ ฿32)</p>
   </footer>
 </div>
@@ -272,7 +271,9 @@ const HOTELS = [
   { icon: "♨️", name: "K's House Nikko – Kinugawa Onsen Hostel", where: "นิกโก", dates: "15–16 ต.ค.", nights: 1, thb: 791.42 },
   { icon: "🏮", name: "Hotel Plus Hostel TOKYO ASAKUSA 1", where: "อาซากุสะ", dates: "16–18 ต.ค.", nights: 2, thb: 1958.95 },
 ];
-const FLIGHT_THB = 15000;
+const FLIGHT_THB = 15535;
+const PASS_THB = 3423;  // Tokyo Wide Pass (นับเป็นค่ารถไฟ)
+const NET_THB = 640;    // ค่าเน็ต
 
 // cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง · duty = duty free (แยกบัญชี ไม่นับรวมยอดทริป)
 // yen = ยอดเยน, thb = ยอดที่จ่ายเป็นบาทจริง (มีทั้งคู่ = ใช้บาทตามยอดตัดบัตร ไม่แปลงด้วยอัตรา)
@@ -349,7 +350,8 @@ function render() {
   const nights = sum(HOTELS.map(h => h.nights));
 
   // ยอดรวมทริป: ไม่มี duty free
-  const g1B = food.b + trans.b + bag.b + hotel, g1Y = food.y + trans.y + bag.y + hotel / r;
+  const g1B = food.b + trans.b + bag.b + PASS_THB + hotel + NET_THB;
+  const g1Y = food.y + trans.y + bag.y + (PASS_THB + hotel + NET_THB) / r;
   const g2B = shop.b + FLIGHT_THB, g2Y = shop.y + FLIGHT_THB / r;
   const grandB = g1B + g2B, grandY = g1Y + g2Y;
 
@@ -362,11 +364,12 @@ function render() {
   $("dutyB").textContent = fb(duty.b);
   $("dutyY").textContent = fy(duty.y);
 
-  // 5 หมวดหลัก (ฝากกระเป๋ารวมในค่าเดินทาง) รวมกันเท่ายอดทริป
+  // 6 หมวดหลัก (ฝากกระเป๋า + Tokyo Wide Pass รวมในค่ารถไฟ) รวมกันเท่ายอดทริป
   const parts = [
     { e: "🍜", l: "ค่ากิน", kj: "食費", n: "ของกิน 7 วัน · รวมบุฟเฟต์ปิ้งย่าง", y: food.y, b: food.b, c: "var(--food)", approx: food.approx },
-    { e: "🚃", l: "ค่ารถไฟ", kj: "交通費", n: "รถไฟ · จักรยาน · ฝากกระเป๋า", y: trans.y + bag.y, b: trans.b + bag.b, c: "var(--trans)", approx: false },
+    { e: "🚃", l: "ค่ารถไฟ", kj: "交通費", n: "Tokyo Wide Pass · รถไฟ · จักรยาน · ฝากกระเป๋า", y: trans.y + bag.y + PASS_THB / r, b: trans.b + bag.b + PASS_THB, c: "var(--trans)", approx: true },
     { e: "🏨", l: "ค่าโรงแรม", kj: "宿泊費", n: `${nights} คืน · จ่ายผ่าน Agoda`, y: hotel / r, b: hotel, c: "var(--hotel)", approx: true },
+    { e: "📶", l: "ค่าเน็ต", kj: "通信費", n: "จ่ายเป็นบาท", y: NET_THB / r, b: NET_THB, c: "var(--net)", approx: true },
     { e: "🛍️", l: "ค่าช้อปปิ้ง", kj: "買い物", n: "ไม่รวม duty free", y: shop.y, b: shop.b, c: "var(--shop)", approx: shop.approx },
     { e: "✈️", l: "ค่าตั๋วเครื่องบิน", kj: "航空券", n: "จ่ายเป็นบาท", y: FLIGHT_THB / r, b: FLIGHT_THB, c: "var(--flight)", approx: true },
   ];
@@ -387,9 +390,11 @@ function render() {
   $("g1Table").innerHTML = head
     + row({ icon: "🍜", c: "var(--food)", label: "ของกิน", note: "7 วัน · รวมบุฟเฟต์ปิ้งย่างที่จ่ายเป็นบาท", y: food.y, b: food.b, approx: food.approx })
     + row({ icon: "🚃", c: "var(--trans)", label: "ค่าเดินทาง", note: "รถไฟ + เช่าจักรยาน", y: trans.y, b: trans.b, approx: trans.approx })
-    + row({ label: "รวมของกิน + ค่าเดินทาง", y: food.y + trans.y, b: food.b + trans.b, cls: "sub", approx: food.approx || trans.approx })
+    + row({ icon: "🎫", c: "var(--trans)", label: "Tokyo Wide Pass", note: "จ่ายเป็นบาท", y: PASS_THB / r, b: PASS_THB, approx: true })
+    + row({ label: "รวมของกิน + ค่าเดินทาง", y: food.y + trans.y + PASS_THB / r, b: food.b + trans.b + PASS_THB, cls: "sub", approx: true })
     + row({ icon: "🧳", c: "var(--bag)", label: "ฝากกระเป๋า", note: "วันที่ 4", y: bag.y, b: bag.b, approx: bag.approx })
     + row({ icon: "🏨", c: "var(--hotel)", label: "โรงแรม", note: `${nights} คืน · จ่ายผ่าน Agoda เป็นบาท`, y: hotel / r, b: hotel, approx: true })
+    + row({ icon: "📶", c: "var(--net)", label: "ค่าเน็ต", note: "จ่ายเป็นบาท", y: NET_THB / r, b: NET_THB, approx: true })
     + row({ label: "รวมค่าเที่ยว", y: g1Y, b: g1B, cls: "total", approx: true });
 
   $("hotelTable").innerHTML = head
