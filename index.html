@@ -4,243 +4,320 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#8f1d1d">
 <title>ทริปญี่ปุ่น ต.ค. 69</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@600;700&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f5f3ef; --card:#ffffff; --ink:#1c1a18; --muted:#726c65; --line:#e8e3dc;
-  --sun:#c8102e;
-  --g1:#0f766e; --g1-soft:#e2f1ee;
-  --g2:#b02a52; --g2-soft:#f8e7ed;
-  --df:#8a5a00; --df-soft:#f6ecd8;
-  --chip:#f1ede7;
+  color-scheme:light dark;
+  --bg:#fbf4e8; --bg2:#f4e4cb; --card:#fffdf8; --ink:#2c1f17; --muted:#7a695b; --line:#ecdcc4;
+  /* สีใบไม้เปลี่ยนสี: โมมิจิ(แดง) / คาคิ(ลูกพลับ) / อิโจ(แปะก๊วย) / มอสส์ / เกาลัด / มะเขือม่วง / ฟ้าใส */
+  --momiji:#c62828; --kaki:#e8731a; --icho:#dfa200; --moss:#6b8a35; --kuri:#8a5a32; --nasu:#8c3a5e; --sora:#2e6c9b;
+  --food:var(--kaki); --trans:var(--moss); --bag:var(--kuri); --hotel:var(--nasu); --shop:var(--momiji); --flight:var(--sora); --duty:var(--icho);
+  --hero1:#8f1d1d; --hero2:#d6401a; --hero3:#f0932a;
+  --shadow:0 1px 0 rgba(120,80,40,.05),0 10px 28px -14px rgba(120,60,20,.35);
+  --serif:"Noto Serif Thai","Shippori Mincho",Georgia,serif;
+  --kanji:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#131211; --card:#1d1b19; --ink:#f2eee9; --muted:#a39d95; --line:#34302c;
-    --sun:#ef4d63;
-    --g1:#5cc6b6; --g1-soft:#16302c;
-    --g2:#f0849f; --g2-soft:#3b1e28;
-    --df:#e2b55c; --df-soft:#33291a;
-    --chip:#2a2724;
+    --bg:#16100d; --bg2:#1e1511; --card:#241a15; --ink:#f6eadb; --muted:#b9a794; --line:#3b2c22;
+    --momiji:#ff7a6b; --kaki:#ff9a4d; --icho:#f2c94c; --moss:#a6c86a; --kuri:#d1a074; --nasu:#e07ea5; --sora:#6fb6ea;
+    --hero1:#5a1313; --hero2:#a42d14; --hero3:#c8691b;
+    --shadow:0 10px 28px -14px rgba(0,0,0,.7);
   }
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;line-height:1.55}
-.wrap{max-width:760px;margin:0 auto;padding:28px 16px 56px}
+body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg),var(--bg2)) fixed;color:var(--ink);font-family:var(--sans);line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 56px}
 .num{font-variant-numeric:tabular-nums;white-space:nowrap}
 
-header{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
-.sun{flex:none;width:44px;height:44px;border-radius:50%;background:var(--sun);margin-top:4px}
-h1{font-size:28px;line-height:1.2;margin:0 0 4px;font-weight:700}
-.sub{color:var(--muted);font-size:15px}
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;color:#fff;border-radius:26px;padding:28px 22px 80px;
+  background:linear-gradient(135deg,var(--hero1),var(--hero2) 58%,var(--hero3))}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24' viewBox='0 0 48 24'%3E%3Cg fill='none' stroke='white' stroke-opacity='.3'%3E%3Ccircle cx='24' cy='24' r='22'/%3E%3Ccircle cx='24' cy='24' r='16'/%3E%3Ccircle cx='24' cy='24' r='10'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='0' cy='0' r='10'/%3E%3Ccircle cx='48' cy='0' r='22'/%3E%3Ccircle cx='48' cy='0' r='16'/%3E%3Ccircle cx='48' cy='0' r='10'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:48px 24px;
+  -webkit-mask-image:linear-gradient(to top,#000,transparent 78%);mask-image:linear-gradient(to top,#000,transparent 78%)}
+.kanji-bg{position:absolute;right:4px;bottom:-52px;font-family:var(--kanji);font-weight:800;font-size:220px;line-height:1;color:#fff;opacity:.12;pointer-events:none;user-select:none}
+.leaves{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.leaves span{position:absolute;top:-30px;left:var(--x);font-size:var(--z);opacity:.9;animation:fall var(--d) linear var(--s) infinite}
+@keyframes fall{
+  0%{transform:translate(0,0) rotate(0)}
+  50%{transform:translate(26px,150px) rotate(200deg)}
+  85%{opacity:.9}
+  100%{transform:translate(-10px,300px) rotate(380deg);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.leaves span{animation:none;top:var(--y);opacity:.55}}
+.hero-in{position:relative;z-index:1;padding-right:58px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.92;margin-bottom:6px}
+h1{font-family:var(--serif);font-weight:700;font-size:31px;line-height:1.25;margin:0 0 12px;text-shadow:0 1px 14px rgba(80,0,0,.4)}
+.route{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:15px;margin-bottom:12px}
+.route .ar{opacity:.7}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(40,0,0,.28);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:3px 12px;font-size:13.5px}
+.hanko{position:absolute;top:20px;right:20px;z-index:1;display:grid;place-items:center;width:44px;padding:9px 0;border-radius:6px;
+  background:rgba(255,255,255,.93);color:var(--hero1);font-family:var(--kanji);font-weight:800;font-size:20px;line-height:1.15;
+  writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.06em;transform:rotate(-5deg);box-shadow:0 4px 14px -4px rgba(60,0,0,.5)}
 
-.grand{display:grid;grid-template-columns:1.25fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:12px}
-.gcol{padding:18px 20px}
-.gcol + .gcol{border-left:1px solid var(--line)}
-.grand .lbl{color:var(--muted);font-size:14px}
-.grand .big{font-size:34px;font-weight:700;line-height:1.15}
-.grand .mid{font-size:24px;font-weight:600;line-height:1.2;margin-top:6px}
-.grand .yen{color:var(--muted);font-size:16px}
+/* ---------- total ---------- */
+.total{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 20px 18px;margin:-48px 12px 14px;box-shadow:var(--shadow)}
+.lbl{font-size:14px;color:var(--muted)}
+.big{font-family:var(--serif);font-weight:700;font-size:42px;line-height:1.15;color:var(--momiji);margin-top:2px}
+.yen{color:var(--muted);font-size:16px}
+.stack{display:flex;gap:2px;height:14px;border-radius:99px;overflow:hidden;margin:16px 0 12px;background:var(--line)}
+.stack span{display:block;min-width:3px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px}
+.lg{display:grid;grid-template-columns:10px 1fr auto;column-gap:8px;align-items:center;font-size:13.5px}
+.lg .dot{width:10px;height:10px;border-radius:50%}
+.lg small{color:var(--muted);margin-left:4px}
 
-.rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 22px;padding:0 4px}
+.rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 18px;padding:0 6px}
 .rate input{width:92px;font:inherit;font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px}
 
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:30px}
-.card{border-radius:18px;padding:16px 18px}
-.card.g1{background:var(--g1-soft)}
-.card.g2{background:var(--g2-soft)}
-.card .t{font-weight:600;font-size:16px}
-.card.g1 .t{color:var(--g1)}
-.card.g2 .t{color:var(--g2)}
+/* ---------- summary cards ---------- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.card{position:relative;overflow:hidden;border-radius:20px;padding:16px 18px;
+  border:1px solid color-mix(in srgb,var(--c) 32%,var(--line));
+  background:linear-gradient(160deg,color-mix(in srgb,var(--c) 17%,var(--card)),color-mix(in srgb,var(--c) 6%,var(--card)))}
+.card .deco{position:absolute;right:8px;bottom:-6px;font-size:60px;opacity:.2;pointer-events:none}
+.card .t{font-family:var(--serif);font-weight:700;font-size:16px;color:color-mix(in srgb,var(--c) 62%,var(--ink))}
+.kj{font-family:var(--kanji);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);margin-left:6px}
 .card .d{font-size:13px;color:var(--muted);margin-bottom:10px}
-.card .b{font-size:26px;font-weight:700;line-height:1.2}
+.card .b{font-family:var(--serif);font-weight:700;font-size:27px;line-height:1.2}
 .card .y{font-size:15px;color:var(--muted)}
-.card .extra{margin-top:10px;padding-top:8px;border-top:1px solid color-mix(in srgb,var(--g2) 25%,transparent);font-size:14px;white-space:normal}
 
-section{margin-bottom:30px}
-h2{font-size:19px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
-h2 .bar{width:6px;height:20px;border-radius:3px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 16px}
+/* ---------- duty free (แยกบัญชี) ---------- */
+.duty{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;margin-bottom:32px;padding:14px 18px;border-radius:20px;
+  border:2px dashed color-mix(in srgb,var(--icho) 75%,var(--line));
+  background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--icho) 12%,var(--card)) 0 10px,color-mix(in srgb,var(--icho) 5%,var(--card)) 10px 20px)}
+.duty-ic{font-size:32px;line-height:1}
+.duty-t{font-family:var(--serif);font-weight:700;font-size:16px}
+.badge{display:inline-block;font-family:var(--sans);font-size:12px;font-weight:600;padding:1px 9px;border-radius:99px;margin-left:6px;vertical-align:2px;
+  background:color-mix(in srgb,var(--icho) 30%,var(--card));color:color-mix(in srgb,var(--icho) 50%,var(--ink))}
+.duty-d{font-size:13px;color:var(--muted)}
+.duty-amt{text-align:right}
+.duty-amt .b{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.2}
+.duty-amt .y{color:var(--muted);font-size:14px}
 
-.row{display:grid;grid-template-columns:1fr auto auto;gap:4px 14px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line)}
+/* ---------- sections & rows ---------- */
+section.blk{margin-bottom:30px}
+h2{display:flex;align-items:baseline;gap:8px;font-family:var(--serif);font-weight:700;font-size:19px;margin:0 0 12px}
+h2::after{content:"";flex:1;border-bottom:1px dotted color-mix(in srgb,var(--muted) 45%,transparent);transform:translateY(-4px)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 16px;box-shadow:var(--shadow)}
+.row{display:grid;grid-template-columns:34px 1fr auto auto;column-gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
 .row:first-child{border-top:0}
+.ic{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:color-mix(in srgb,var(--c,var(--muted)) 17%,var(--card))}
+.ic:empty{background:none}
 .row .l{min-width:0}
 .row .l small{display:block;color:var(--muted);font-size:13px;line-height:1.4}
 .row .y{color:var(--muted);text-align:right;min-width:72px}
-.row .bt{text-align:right;font-weight:600;min-width:86px}
+.row .bt{text-align:right;font-weight:600;min-width:90px}
 .row.head{padding:8px 0 4px;font-size:12px;color:var(--muted)}
 .row.head .bt{font-weight:400}
 .row.sub{color:var(--muted)}
 .row.sub .bt{font-weight:500;color:var(--muted)}
 .row.total{border-top:2px solid var(--ink);font-weight:700}
-.row.total .bt{font-size:18px}
-.row.dfree{background:var(--df-soft);margin:0 -16px;padding-left:16px;padding-right:16px}
-.row.total.withdf{border-top-color:var(--df)}
+.row.total .bt{font-family:var(--serif);font-size:18px}
+.row.dashed{border:1.5px dashed color-mix(in srgb,var(--icho) 75%,var(--line));border-radius:12px;padding:8px 10px;margin:6px -10px 8px;background:color-mix(in srgb,var(--icho) 9%,var(--card))}
 .approx{font-size:12px}
+.tag{display:inline-block;font-size:11.5px;padding:0 8px;border-radius:99px;margin-left:6px;vertical-align:1px;
+  background:color-mix(in srgb,var(--c) 17%,var(--card));color:color-mix(in srgb,var(--c) 68%,var(--ink))}
 
-.day{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px 6px;margin-bottom:12px}
-.day-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-.day-h .n{font-weight:700;font-size:17px}
-.day-h .w{color:var(--muted);font-size:14px}
-.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;margin-right:6px;vertical-align:1px}
-.tag.g1{background:var(--g1-soft);color:var(--g1)}
-.tag.g2{background:var(--g2-soft);color:var(--g2)}
-.tag.df{background:var(--df-soft);color:var(--df)}
-.day-sum{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 2px}
-.pill{font-size:13px;padding:4px 10px;border-radius:10px;background:var(--chip)}
+/* ---------- days ---------- */
+.day{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--dc);border-radius:16px;padding:14px 16px 6px;margin-bottom:12px;box-shadow:var(--shadow)}
+.day-h{display:flex;align-items:center;gap:12px}
+.dn{flex:none;width:38px;height:38px;border-radius:50%;background:var(--dc);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:18px}
+.dt{flex:1;min-width:0}
+.dt b{display:block;font-size:16px}
+.dt span{color:var(--muted);font-size:13.5px}
+.de{font-size:28px;line-height:1}
+.day-sum{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+.pill{font-size:13px;padding:4px 10px;border-radius:10px;background:color-mix(in srgb,var(--muted) 13%,var(--card))}
 .pill b{font-weight:600}
+.pill.dashed{background:color-mix(in srgb,var(--icho) 12%,var(--card));border:1.5px dashed color-mix(in srgb,var(--icho) 75%,var(--line))}
 
 footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
 footer p{margin:0 0 6px}
 
 @media (max-width:520px){
-  h1{font-size:24px}
-  .grand{grid-template-columns:1fr}
-  .gcol + .gcol{border-left:0;border-top:1px solid var(--line)}
+  .wrap{padding:12px 12px 48px}
+  .hero{padding:24px 18px 76px;border-radius:22px}
+  h1{font-size:26px}
+  .total{margin:-48px 6px 14px}
+  .big{font-size:34px}
+  .legend{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
-  .grand .big{font-size:30px}
-  .row{gap:2px 10px}
+  .duty{grid-template-columns:auto 1fr}
+  .duty-amt{grid-column:1/-1;text-align:left;display:flex;gap:10px;align-items:baseline}
+  .row{column-gap:10px}
   .row .y{min-width:62px;font-size:14px}
-  .row .bt{min-width:78px}
+  .row .bt{min-width:80px}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div class="sun" aria-hidden="true"></div>
-    <div>
+
+  <header class="hero">
+    <div class="leaves" aria-hidden="true">
+      <span style="--x:6%;--z:22px;--d:11s;--s:-2s;--y:12%">🍁</span>
+      <span style="--x:18%;--z:16px;--d:14s;--s:-8s;--y:48%">🍂</span>
+      <span style="--x:31%;--z:26px;--d:12s;--s:-5s;--y:22%">🍁</span>
+      <span style="--x:46%;--z:18px;--d:15s;--s:-11s;--y:60%">🍂</span>
+      <span style="--x:58%;--z:24px;--d:10s;--s:-1s;--y:30%">🍁</span>
+      <span style="--x:70%;--z:15px;--d:13s;--s:-6s;--y:68%">🍂</span>
+      <span style="--x:80%;--z:21px;--d:12s;--s:-9s;--y:15%">🍁</span>
+      <span style="--x:90%;--z:17px;--d:16s;--s:-4s;--y:52%">🍂</span>
+    </div>
+    <div class="kanji-bg" aria-hidden="true">秋</div>
+    <div class="hanko" aria-hidden="true">秋旅</div>
+    <div class="hero-in">
+      <div class="eyebrow">🍁 秋の旅 · Tokyo &amp; Nikko</div>
       <h1>ค่าใช้จ่ายทริปญี่ปุ่น</h1>
-      <div class="sub">โตเกียว · นิกโก · <span class="num">12–18 ต.ค. 2569</span> · <span class="num">7 วัน 6 คืน</span></div>
+      <div class="route">
+        <span>🗼 โตเกียว</span><span class="ar">→</span><span>⛩️ นิกโก</span><span class="ar">→</span><span>🏮 อาซากุสะ</span>
+      </div>
+      <div class="chips">
+        <span class="chip num">📅 12–18 ต.ค. 2569</span>
+        <span class="chip num">🌙 7 วัน 6 คืน</span>
+      </div>
     </div>
   </header>
 
-  <div class="grand">
-    <div class="gcol">
-      <div class="lbl">รวมทั้งทริป · ไม่รวม duty free</div>
-      <div class="big num" id="grandB"></div>
-      <div class="yen num" id="grandY"></div>
-    </div>
-    <div class="gcol">
-      <div class="lbl">ถ้ารวม duty free ด้วย</div>
-      <div class="mid num" id="grandDfB"></div>
-      <div class="yen num" id="grandDfY"></div>
-    </div>
-  </div>
+  <section class="total" aria-label="ยอดรวมทั้งทริป">
+    <div class="lbl">💴 รวมทั้งทริป <span>· ไม่รวม duty free</span></div>
+    <div class="big num" id="grandB"></div>
+    <div class="yen num" id="grandY"></div>
+    <div class="stack" id="stack" role="img"></div>
+    <div class="legend" id="legend"></div>
+  </section>
 
-  <label class="rate">อัตราแลกเปลี่ยน 1 เยน =
+  <label class="rate">💱 อัตราแลกเปลี่ยน 1 เยน =
     <input id="rate" type="number" step="0.0001" min="0.01" value="0.2122" inputmode="decimal"> บาท
   </label>
 
   <div class="cards">
-    <div class="card g1">
-      <div class="t">ค่าเที่ยว</div>
+    <div class="card" style="--c:var(--kaki)">
+      <span class="deco" aria-hidden="true">🍂</span>
+      <div class="t">🍜 ค่าเที่ยว<span class="kj">旅費</span></div>
       <div class="d">ของกิน + ค่าเดินทาง + โรงแรม</div>
       <div class="b num" id="g1B"></div>
       <div class="y num" id="g1Y"></div>
     </div>
-    <div class="card g2">
-      <div class="t">ช้อปปิ้ง + ตั๋วเครื่องบิน</div>
-      <div class="d">ไม่รวม duty free</div>
+    <div class="card" style="--c:var(--momiji)">
+      <span class="deco" aria-hidden="true">🍁</span>
+      <div class="t">🛍️ ช้อปปิ้ง + ตั๋วบิน<span class="kj">買い物</span></div>
+      <div class="d">ตั๋วเครื่องบินจ่ายเป็นบาท</div>
       <div class="b num" id="g2B"></div>
       <div class="y num" id="g2Y"></div>
-      <div class="extra" id="g2Df"></div>
     </div>
   </div>
 
-  <section>
-    <h2><span class="bar" style="background:var(--g1)"></span>ค่าเที่ยว: กิน + เดินทาง + โรงแรม</h2>
+  <section class="duty" aria-label="Duty free แยกบัญชี">
+    <div class="duty-ic" aria-hidden="true">🎁</div>
+    <div>
+      <div class="duty-t">Duty free<span class="kj">免税品</span><span class="badge">แยกบัญชี</span></div>
+      <div class="duty-d">ซื้อวันที่ 7 · ส่วนใหญ่เป็นของคนอื่น · <b>ไม่นับรวมในยอดทริปด้านบน</b></div>
+    </div>
+    <div class="duty-amt">
+      <div class="b num" id="dutyB"></div>
+      <div class="y num" id="dutyY"></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>🍂 ค่าเที่ยว <span class="kj">旅費</span></h2>
     <div class="box" id="g1Table"></div>
   </section>
 
-  <section>
-    <h2><span class="bar" style="background:var(--g1)"></span>โรงแรม (Agoda 4 การจอง)</h2>
+  <section class="blk">
+    <h2>🏨 โรงแรม <span class="kj">宿泊</span></h2>
     <div class="box" id="hotelTable"></div>
   </section>
 
-  <section>
-    <h2><span class="bar" style="background:var(--g2)"></span>ช้อปปิ้ง + ตั๋วเครื่องบิน</h2>
+  <section class="blk">
+    <h2>🛍️ ช้อปปิ้ง + ตั๋วเครื่องบิน <span class="kj">買い物</span></h2>
     <div class="box" id="g2Table"></div>
   </section>
 
-  <section>
-    <h2><span class="bar" style="background:var(--ink)"></span>รายวัน</h2>
+  <section class="blk">
+    <h2>🗓️ รายวัน <span class="kj">日別</span></h2>
     <div id="days"></div>
   </section>
 
   <footer>
-    <p>ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ยกเว้น Donki ที่ใช้ยอดตัดบัตรจริง</p>
-    <p>รายการที่จ่ายเป็นบาท (โรงแรม ตั๋วเครื่องบิน บุฟเฟต์ปิ้งย่าง ช้อปปิ้งเพิ่มวันที่ 7) ช่องเยนเป็นค่าประมาณ (≈)</p>
-    <p>Duty free แยกยอดไว้ เพราะส่วนใหญ่เป็นของคนอื่น</p>
-    <p>ค่าโรงแรมเป็นยอดรวมภาษีที่จ่ายผ่าน Agoda แล้ว ไม่รวมภาษีอาบน้ำที่นิกโกที่จ่ายหน้าที่พัก (ประมาณ ฿32)</p>
+    <p>🍁 ยอดที่จ่ายเป็นเยนแปลงเป็นบาทด้วยอัตราด้านบน ยกเว้น Donki ที่ใช้ยอดตัดบัตรจริง</p>
+    <p>🍂 รายการที่จ่ายเป็นบาท (โรงแรม ตั๋วเครื่องบิน บุฟเฟต์ปิ้งย่าง ช้อปปิ้งเพิ่มวันที่ 7) ช่องเยนเป็นค่าประมาณ (≈)</p>
+    <p>🎁 Duty free แยกบัญชีต่างหาก ไม่รวมในยอดทริป เพราะส่วนใหญ่เป็นของคนอื่น</p>
+    <p>🏨 ค่าโรงแรมเป็นยอดรวมภาษีที่จ่ายผ่าน Agoda แล้ว ไม่รวมภาษีอาบน้ำที่นิกโกที่จ่ายหน้าที่พัก (ประมาณ ฿32)</p>
   </footer>
 </div>
 
 <script>
 const HOTELS = [
-  { name: "Shinjuku Kuyakusho-mae Capsule Hotel", where: "ชินจูกุ", dates: "12–14 ต.ค.", nights: 2, thb: 1715.66 },
-  { name: "Shinjuku Kuyakusho-mae Capsule Hotel", where: "ชินจูกุ", dates: "14–15 ต.ค.", nights: 1, thb: 751.34 },
-  { name: "K's House Nikko – Kinugawa Onsen Hostel", where: "นิกโก", dates: "15–16 ต.ค.", nights: 1, thb: 791.42 },
-  { name: "Hotel Plus Hostel TOKYO ASAKUSA 1", where: "อาซากุสะ", dates: "16–18 ต.ค.", nights: 2, thb: 1958.95 },
+  { icon: "🌃", name: "Shinjuku Kuyakusho-mae Capsule Hotel", where: "ชินจูกุ", dates: "12–14 ต.ค.", nights: 2, thb: 1715.66 },
+  { icon: "🌃", name: "Shinjuku Kuyakusho-mae Capsule Hotel", where: "ชินจูกุ", dates: "14–15 ต.ค.", nights: 1, thb: 751.34 },
+  { icon: "♨️", name: "K's House Nikko – Kinugawa Onsen Hostel", where: "นิกโก", dates: "15–16 ต.ค.", nights: 1, thb: 791.42 },
+  { icon: "🏮", name: "Hotel Plus Hostel TOKYO ASAKUSA 1", where: "อาซากุสะ", dates: "16–18 ต.ค.", nights: 2, thb: 1958.95 },
 ];
 const FLIGHT_THB = 15000;
 
-// cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง · duty = duty free (แยกยอด)
+// cat: food = ของกิน, trans = ค่าเดินทาง, bag = ฝากกระเป๋า (กลุ่มค่าเที่ยว) · shop = ช้อปปิ้ง · duty = duty free (แยกบัญชี ไม่นับรวมยอดทริป)
 // yen = ยอดเยน, thb = ยอดที่จ่ายเป็นบาทจริง (มีทั้งคู่ = ใช้บาทตามยอดตัดบัตร ไม่แปลงด้วยอัตรา)
 const DAYS = [
-  { n: 1, date: "จ. 12 ต.ค.", where: "โตเกียว", items: [
-    { cat: "food", label: "ของกิน", yen: [1150, 450, 300] },
-    { cat: "food", label: "บุฟเฟต์ปิ้งย่าง", thb: 1800 },
-    { cat: "trans", label: "ค่าเดินทาง", yen: [850] },
-    { cat: "shop", label: "ช้อปปิ้ง", yen: [1300] } ] },
-  { n: 2, date: "อ. 13 ต.ค.", where: "โตเกียว", items: [
-    { cat: "food", label: "ของกิน", yen: [890, 670, 250, 2060] },
-    { cat: "trans", label: "ค่าเดินทาง", yen: [580] },
-    { cat: "shop", label: "ช้อปปิ้ง", yen: [4070, 3960] } ] },
-  { n: 3, date: "พ. 14 ต.ค.", where: "โตเกียว", items: [
-    { cat: "food", label: "ของกิน", yen: [800, 800, 800, 1400, 200] },
-    { cat: "trans", label: "เช่าจักรยาน", yen: [1500] } ] },
-  { n: 4, date: "พฤ. 15 ต.ค.", where: "โตเกียว → นิกโก", items: [
-    { cat: "food", label: "ของกิน", yen: [650, 1200, 400] },
-    { cat: "trans", label: "ตั๋วรถไฟ", yen: [550] },
-    { cat: "bag", label: "ฝากกระเป๋า", yen: [1200] } ] },
-  { n: 5, date: "ศ. 16 ต.ค.", where: "นิกโก → โตเกียว", items: [
-    { cat: "food", label: "ของกิน", yen: [1350, 650, 150, 800, 1450] },
-    { cat: "trans", label: "ตั๋วรถไฟ", yen: [550, 280] } ] },
-  { n: 6, date: "ส. 17 ต.ค.", where: "โตเกียว", items: [
-    { cat: "food", label: "ของกิน", yen: [3200, 500, 200, 1150, 400, 350] },
-    { cat: "trans", label: "ค่ารถไฟ", yen: [180, 200, 180] },
-    { cat: "shop", label: "Donki", yen: [16678], thb: 3645.65 },
-    { cat: "shop", label: "ขนม 7-Eleven", yen: [1500] } ] },
-  { n: 7, date: "อา. 18 ต.ค.", where: "วันกลับ", items: [
-    { cat: "food", label: "ของกิน (ซูชิ 2,100)", yen: [1250, 2100, 400] },
-    { cat: "trans", label: "ค่ารถไฟ", yen: [660] },
-    { cat: "shop", label: "ช้อปปิ้งเพิ่ม", thb: 2537.73 },
-    { cat: "duty", label: "Duty free", yen: [30234] } ] },
+  { n: 1, date: "จ. 12 ต.ค.", where: "โตเกียว", emoji: "🗼", items: [
+    { cat: "food", icon: "🍜", label: "ของกิน", yen: [1150, 450, 300] },
+    { cat: "food", icon: "🥩", label: "บุฟเฟต์ปิ้งย่าง", thb: 1800 },
+    { cat: "trans", icon: "🚃", label: "ค่าเดินทาง", yen: [850] },
+    { cat: "shop", icon: "🛍️", label: "ช้อปปิ้ง", yen: [1300] } ] },
+  { n: 2, date: "อ. 13 ต.ค.", where: "โตเกียว", emoji: "🛍️", items: [
+    { cat: "food", icon: "🍜", label: "ของกิน", yen: [890, 670, 250, 2060] },
+    { cat: "trans", icon: "🚃", label: "ค่าเดินทาง", yen: [580] },
+    { cat: "shop", icon: "🛍️", label: "ช้อปปิ้ง", yen: [4070, 3960] } ] },
+  { n: 3, date: "พ. 14 ต.ค.", where: "โตเกียว", emoji: "🚲", items: [
+    { cat: "food", icon: "🍜", label: "ของกิน", yen: [800, 800, 800, 1400, 200] },
+    { cat: "trans", icon: "🚲", label: "เช่าจักรยาน", yen: [1500] } ] },
+  { n: 4, date: "พฤ. 15 ต.ค.", where: "โตเกียว → นิกโก", emoji: "⛩️", items: [
+    { cat: "food", icon: "🍜", label: "ของกิน", yen: [650, 1200, 400] },
+    { cat: "trans", icon: "🚆", label: "ตั๋วรถไฟ", yen: [550] },
+    { cat: "bag", icon: "🧳", label: "ฝากกระเป๋า", yen: [1200] } ] },
+  { n: 5, date: "ศ. 16 ต.ค.", where: "นิกโก → โตเกียว", emoji: "🍁", items: [
+    { cat: "food", icon: "🍜", label: "ของกิน", yen: [1350, 650, 150, 800, 1450] },
+    { cat: "trans", icon: "🚆", label: "ตั๋วรถไฟ", yen: [550, 280] } ] },
+  { n: 6, date: "ส. 17 ต.ค.", where: "โตเกียว", emoji: "🐧", items: [
+    { cat: "food", icon: "🍜", label: "ของกิน", yen: [3200, 500, 200, 1150, 400, 350] },
+    { cat: "trans", icon: "🚃", label: "ค่ารถไฟ", yen: [180, 200, 180] },
+    { cat: "shop", icon: "🐧", label: "Donki", yen: [16678], thb: 3645.65 },
+    { cat: "shop", icon: "🍡", label: "ขนม 7-Eleven", yen: [1500] } ] },
+  { n: 7, date: "อา. 18 ต.ค.", where: "วันกลับ", emoji: "✈️", items: [
+    { cat: "food", icon: "🍣", label: "ของกิน (ซูชิ 2,100)", yen: [1250, 2100, 400] },
+    { cat: "trans", icon: "🚃", label: "ค่ารถไฟ", yen: [660] },
+    { cat: "shop", icon: "🛍️", label: "ช้อปปิ้งเพิ่ม", thb: 2537.73 },
+    { cat: "duty", icon: "🎁", label: "Duty free", yen: [30234] } ] },
 ];
+// ไล่สีวันที่ 1→7 เหมือนใบไม้เปลี่ยนจากเหลือง ส้ม ไปแดง
+const DAY_COLORS = ["#b8860b", "#c9760f", "#d4640f", "#d0531a", "#c4411f", "#b8312a", "#9f2328"];
+const CAT_COLOR = { food: "var(--food)", trans: "var(--trans)", bag: "var(--bag)", shop: "var(--shop)", duty: "var(--duty)" };
 
 const sum = a => a.reduce((s, x) => s + x, 0);
 const fy = n => "¥" + Math.round(n).toLocaleString("en-US");
 const fb = n => "฿" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const $ = id => document.getElementById(id);
 
-function row(label, note, yen, baht, cls = "", approxYen = false) {
+function row({ icon = "", c, label, note = "", y, b, cls = "", approx = false, tag = "" }) {
   return `<div class="row ${cls}">
-    <div class="l">${label}${note ? `<small>${note}</small>` : ""}</div>
-    <div class="y num">${approxYen ? '<span class="approx">≈</span>' : ""}${fy(yen)}</div>
-    <div class="bt num">${fb(baht)}</div>
+    <span class="ic" style="--c:${c || "var(--muted)"}" aria-hidden="true">${icon}</span>
+    <div class="l">${label}${tag}${note ? `<small>${note}</small>` : ""}</div>
+    <div class="y num">${approx ? '<span class="approx">≈</span>' : ""}${fy(y)}</div>
+    <div class="bt num">${fb(b)}</div>
   </div>`;
 }
-const head = `<div class="row head"><div></div><div class="y">เยน</div><div class="bt">บาท</div></div>`;
-const TAGS = {
-  shop: '<span class="tag g2">ช้อป</span>',
-  duty: '<span class="tag df">แยกยอด</span>',
-  trip: '<span class="tag g1">เที่ยว</span>',
-};
+const head = `<div class="row head"><span></span><div></div><div class="y">เยน</div><div class="bt">บาท</div></div>`;
 
 function render() {
   const r = parseFloat($("rate").value) || 0.2122;
@@ -248,67 +325,87 @@ function render() {
   // y = ยอดเยน (หรือประมาณจากบาท), b = ยอดบาท (ยอดจริงถ้ามี ไม่งั้นแปลงจากเยน)
   const all = DAYS.flatMap(d => d.items.map(it => {
     const parts = it.yen || [];
-    const yen = sum(parts);
     const hasYen = parts.length > 0, hasThb = it.thb != null;
     const note = hasThb ? (hasYen ? "ยอดตัดบัตรจริง" : "จ่ายเป็นบาท")
       : parts.length > 1 ? parts.map(x => x.toLocaleString("en-US")).join(" + ") : "";
-    return { day: d.n, cat: it.cat, label: it.label, note,
-      y: hasYen ? yen : it.thb / r,
-      b: hasThb ? it.thb : yen * r,
+    return { day: d.n, cat: it.cat, icon: it.icon, label: it.label, note,
+      y: hasYen ? sum(parts) : it.thb / r,
+      b: hasThb ? it.thb : sum(parts) * r,
       approx: !hasYen };
   }));
   const tot = list => ({ y: sum(list.map(i => i.y)), b: sum(list.map(i => i.b)), approx: list.some(i => i.approx) });
   const cat = c => tot(all.filter(i => i.cat === c));
-  const itemRow = (i, label, note) => row(label, note, i.y, i.b, i.cat === "duty" ? "dfree" : "", i.approx);
+  const itemRow = (i, extra = {}) => row({ icon: i.icon, c: CAT_COLOR[i.cat], label: i.label, note: i.note, y: i.y, b: i.b, approx: i.approx, ...extra });
 
   const food = cat("food"), trans = cat("trans"), bag = cat("bag"), shop = cat("shop"), duty = cat("duty");
   const hotel = sum(HOTELS.map(h => h.thb));
   const nights = sum(HOTELS.map(h => h.nights));
 
+  // ยอดรวมทริป: ไม่มี duty free
   const g1B = food.b + trans.b + bag.b + hotel, g1Y = food.y + trans.y + bag.y + hotel / r;
   const g2B = shop.b + FLIGHT_THB, g2Y = shop.y + FLIGHT_THB / r;
+  const grandB = g1B + g2B, grandY = g1Y + g2Y;
 
-  $("grandB").textContent = fb(g1B + g2B);
-  $("grandY").textContent = "≈ " + fy(g1Y + g2Y);
-  $("grandDfB").textContent = fb(g1B + g2B + duty.b);
-  $("grandDfY").textContent = "≈ " + fy(g1Y + g2Y + duty.y);
+  $("grandB").textContent = fb(grandB);
+  $("grandY").textContent = "≈ " + fy(grandY);
   $("g1B").textContent = fb(g1B);
   $("g1Y").textContent = "≈ " + fy(g1Y);
   $("g2B").textContent = fb(g2B);
   $("g2Y").textContent = "≈ " + fy(g2Y);
-  $("g2Df").innerHTML = `รวม duty free ${fy(duty.y)} แล้ว = <b class="num">${fb(g2B + duty.b)}</b>`;
+  $("dutyB").textContent = fb(duty.b);
+  $("dutyY").textContent = fy(duty.y);
+
+  // แถบสัดส่วน
+  const parts = [
+    { e: "🍜", l: "ของกิน", b: food.b, c: "var(--food)" },
+    { e: "🚃", l: "ค่าเดินทาง", b: trans.b, c: "var(--trans)" },
+    { e: "🧳", l: "ฝากกระเป๋า", b: bag.b, c: "var(--bag)" },
+    { e: "🏨", l: "โรงแรม", b: hotel, c: "var(--hotel)" },
+    { e: "🛍️", l: "ช้อปปิ้ง", b: shop.b, c: "var(--shop)" },
+    { e: "✈️", l: "ตั๋วเครื่องบิน", b: FLIGHT_THB, c: "var(--flight)" },
+  ];
+  const pct = p => (p.b / grandB * 100);
+  $("stack").setAttribute("aria-label", "สัดส่วนค่าใช้จ่าย: " + parts.map(p => `${p.l} ${pct(p).toFixed(0)}%`).join(", "));
+  $("stack").innerHTML = parts.map(p => `<span style="width:${pct(p)}%;background:${p.c}" title="${p.l} ${fb(p.b)}"></span>`).join("");
+  $("legend").innerHTML = parts.map(p =>
+    `<div class="lg"><span class="dot" style="background:${p.c}"></span><span>${p.e} ${p.l}<small>${pct(p).toFixed(0)}%</small></span><span class="num">${fb(p.b)}</span></div>`).join("");
 
   $("g1Table").innerHTML = head
-    + row("🍜 ของกิน", "7 วัน · รวมบุฟเฟต์ปิ้งย่างที่จ่ายเป็นบาท", food.y, food.b, "", food.approx)
-    + row("🚃 ค่าเดินทาง", "รถไฟ + เช่าจักรยาน", trans.y, trans.b, "", trans.approx)
-    + row("รวมของกิน + ค่าเดินทาง", "", food.y + trans.y, food.b + trans.b, "sub", food.approx || trans.approx)
-    + row("🧳 ฝากกระเป๋า", "วันที่ 4", bag.y, bag.b, "", bag.approx)
-    + row("🏨 โรงแรม", `${nights} คืน · จ่ายผ่าน Agoda เป็นบาท`, hotel / r, hotel, "", true)
-    + row("รวมค่าเที่ยว", "", g1Y, g1B, "total", true);
+    + row({ icon: "🍜", c: "var(--food)", label: "ของกิน", note: "7 วัน · รวมบุฟเฟต์ปิ้งย่างที่จ่ายเป็นบาท", y: food.y, b: food.b, approx: food.approx })
+    + row({ icon: "🚃", c: "var(--trans)", label: "ค่าเดินทาง", note: "รถไฟ + เช่าจักรยาน", y: trans.y, b: trans.b, approx: trans.approx })
+    + row({ label: "รวมของกิน + ค่าเดินทาง", y: food.y + trans.y, b: food.b + trans.b, cls: "sub", approx: food.approx || trans.approx })
+    + row({ icon: "🧳", c: "var(--bag)", label: "ฝากกระเป๋า", note: "วันที่ 4", y: bag.y, b: bag.b, approx: bag.approx })
+    + row({ icon: "🏨", c: "var(--hotel)", label: "โรงแรม", note: `${nights} คืน · จ่ายผ่าน Agoda เป็นบาท`, y: hotel / r, b: hotel, approx: true })
+    + row({ label: "รวมค่าเที่ยว", y: g1Y, b: g1B, cls: "total", approx: true });
 
   $("hotelTable").innerHTML = head
-    + HOTELS.map(h => row(h.name, `${h.where} · ${h.dates} · ${h.nights} คืน`, h.thb / r, h.thb, "", true)).join("")
-    + row("รวมโรงแรม", "", hotel / r, hotel, "total", true);
+    + HOTELS.map(h => row({ icon: h.icon, c: "var(--hotel)", label: h.name, note: `${h.where} · ${h.dates} · ${h.nights} คืน`, y: h.thb / r, b: h.thb, approx: true })).join("")
+    + row({ label: "รวมโรงแรม", y: hotel / r, b: hotel, cls: "total", approx: true });
 
-  const dutyItems = all.filter(i => i.cat === "duty");
   $("g2Table").innerHTML = head
-    + all.filter(i => i.cat === "shop").map(i => itemRow(i, "🛍️ " + i.label, ["วันที่ " + i.day, i.note].filter(Boolean).join(" · "))).join("")
-    + row("รวมช้อปปิ้ง (ไม่รวม duty free)", "", shop.y, shop.b, "sub", shop.approx)
-    + row("✈️ ตั๋วเครื่องบิน", "จ่ายเป็นบาท", FLIGHT_THB / r, FLIGHT_THB, "", true)
-    + row("รวม · ไม่มี duty free", "", g2Y, g2B, "total", true)
-    + dutyItems.map(i => itemRow(i, "🎁 " + i.label, `วันที่ ${i.day} · ส่วนใหญ่เป็นของคนอื่น`)).join("")
-    + row("รวม · มี duty free", "", g2Y + duty.y, g2B + duty.b, "total withdf", true);
+    + all.filter(i => i.cat === "shop").map(i => itemRow(i, { note: ["วันที่ " + i.day, i.note].filter(Boolean).join(" · ") })).join("")
+    + row({ label: "รวมช้อปปิ้ง", y: shop.y, b: shop.b, cls: "sub", approx: shop.approx })
+    + row({ icon: "✈️", c: "var(--flight)", label: "ตั๋วเครื่องบิน", note: "จ่ายเป็นบาท", y: FLIGHT_THB / r, b: FLIGHT_THB, approx: true })
+    + row({ label: "รวมช้อปปิ้ง + ตั๋วเครื่องบิน", y: g2Y, b: g2B, cls: "total", approx: true });
 
-  $("days").innerHTML = DAYS.map(d => {
+  $("days").innerHTML = DAYS.map((d, idx) => {
     const items = all.filter(i => i.day === d.n);
     const trip = tot(items.filter(i => !["shop", "duty"].includes(i.cat)));
     const shopDay = tot(items.filter(i => i.cat === "shop"));
     const dutyDay = tot(items.filter(i => i.cat === "duty"));
-    const pill = (name, t) => t.b ? `<span class="pill">${name} <b class="num">${t.approx ? "≈" : ""}${fy(t.y)} · ${fb(t.b)}</b></span>` : "";
-    const rows = items.map(i => itemRow(i, (TAGS[i.cat] || TAGS.trip) + i.label, i.note)).join("");
-    return `<div class="day">
-      <div class="day-h"><span class="n">วันที่ ${d.n}</span><span class="w">${d.date} · ${d.where}</span></div>
-      <div class="day-sum">${pill("ค่าเที่ยว", trip)}${pill("ช้อป", shopDay)}${pill("duty free", dutyDay)}</div>
+    const pill = (name, t, cls = "") => t.b ? `<span class="pill ${cls}">${name} <b class="num">${t.approx ? "≈" : ""}${fy(t.y)} · ${fb(t.b)}</b></span>` : "";
+    const rows = items.map(i => {
+      if (i.cat === "shop") return itemRow(i, { tag: '<span class="tag" style="--c:var(--shop)">ช้อป</span>' });
+      if (i.cat === "duty") return itemRow(i, { cls: "dashed", tag: '<span class="tag" style="--c:var(--duty)">แยกบัญชี</span>', note: "ไม่นับรวมในยอดทริป" });
+      return itemRow(i);
+    }).join("");
+    return `<div class="day" style="--dc:${DAY_COLORS[idx]}">
+      <div class="day-h">
+        <span class="dn num">${d.n}</span>
+        <div class="dt"><b>${d.date}</b><span>${d.where}</span></div>
+        <span class="de" aria-hidden="true">${d.emoji}</span>
+      </div>
+      <div class="day-sum">${pill("🍜 ค่าเที่ยว", trip)}${pill("🛍️ ช้อป", shopDay)}${pill("🎁 duty free · แยกบัญชี", dutyDay, "dashed")}</div>
       ${head}${rows}
     </div>`;
   }).join("");
