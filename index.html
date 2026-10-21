@@ -65,31 +65,40 @@ h1{font-family:var(--serif);font-weight:700;font-size:31px;line-height:1.25;marg
   writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.06em;transform:rotate(-5deg);box-shadow:0 4px 14px -4px rgba(60,0,0,.5)}
 
 /* ---------- total ---------- */
-.total{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 20px 18px;margin:-48px 12px 14px;box-shadow:var(--shadow)}
+.grand{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 20px 18px;margin:-48px 12px 14px;box-shadow:var(--shadow)}
 .lbl{font-size:14px;color:var(--muted)}
 .big{font-family:var(--serif);font-weight:700;font-size:42px;line-height:1.15;color:var(--momiji);margin-top:2px}
 .yen{color:var(--muted);font-size:16px}
 .stack{display:flex;gap:2px;height:14px;border-radius:99px;overflow:hidden;margin:16px 0 12px;background:var(--line)}
 .stack span{display:block;min-width:3px}
-.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px}
-.lg{display:grid;grid-template-columns:10px 1fr auto;column-gap:8px;align-items:center;font-size:13.5px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px}
+.lg{display:inline-flex;align-items:center;gap:6px;font-size:13.5px}
 .lg .dot{width:10px;height:10px;border-radius:50%}
-.lg small{color:var(--muted);margin-left:4px}
+.lg small{color:var(--muted)}
 
 .rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 18px;padding:0 6px}
 .rate input{width:92px;font:inherit;font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px}
 
-/* ---------- summary cards ---------- */
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.card{position:relative;overflow:hidden;border-radius:20px;padding:16px 18px;
+/* ---------- 5 box ---------- */
+.boxes{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:12px}
+.bx{grid-column:span 2;position:relative;overflow:hidden;border-radius:20px;padding:14px 16px;
   border:1px solid color-mix(in srgb,var(--c) 32%,var(--line));
   background:linear-gradient(160deg,color-mix(in srgb,var(--c) 17%,var(--card)),color-mix(in srgb,var(--c) 6%,var(--card)))}
-.card .deco{position:absolute;right:8px;bottom:-6px;font-size:60px;opacity:.2;pointer-events:none}
-.card .t{font-family:var(--serif);font-weight:700;font-size:16px;color:color-mix(in srgb,var(--c) 62%,var(--ink))}
+.bx:nth-child(n+4){grid-column:span 3}
+.bx .deco{position:absolute;right:8px;bottom:-4px;font-size:54px;opacity:.2;pointer-events:none}
+.bx .t{font-family:var(--serif);font-weight:700;font-size:15.5px;line-height:1.35;color:color-mix(in srgb,var(--c) 62%,var(--ink))}
 .kj{font-family:var(--kanji);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);margin-left:6px}
-.card .d{font-size:13px;color:var(--muted);margin-bottom:10px}
-.card .b{font-family:var(--serif);font-weight:700;font-size:27px;line-height:1.2}
-.card .y{font-size:15px;color:var(--muted)}
+.bx .d{font-size:12.5px;color:var(--muted);margin:1px 0 10px}
+.bx .b{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1.2}
+.bx .y{font-size:14px;color:var(--muted)}
+.bx .pc{display:inline-block;margin-top:8px;font-size:12px;padding:0 9px;border-radius:99px;
+  background:color-mix(in srgb,var(--c) 18%,var(--card));color:color-mix(in srgb,var(--c) 68%,var(--ink))}
+.groups{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.grp{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;font-size:13.5px;
+  border:1px solid color-mix(in srgb,var(--c) 28%,var(--line));background:color-mix(in srgb,var(--c) 10%,var(--card))}
+.grp small{display:block;color:var(--muted);font-size:12.5px}
+.grp .r{text-align:right}
+.grp .r b{font-family:var(--serif);font-size:16px}
 
 /* ---------- duty free (แยกบัญชี) ---------- */
 .duty{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;margin-bottom:32px;padding:14px 18px;border-radius:20px;
@@ -148,10 +157,12 @@ footer p{margin:0 0 6px}
   .wrap{padding:12px 12px 48px}
   .hero{padding:24px 18px 76px;border-radius:22px}
   h1{font-size:26px}
-  .total{margin:-48px 6px 14px}
+  .grand{margin:-48px 6px 14px}
   .big{font-size:34px}
-  .legend{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
+  .boxes{grid-template-columns:repeat(2,1fr);gap:10px}
+  .bx,.bx:nth-child(n+4){grid-column:span 1}
+  .bx:nth-child(5){grid-column:span 2}
+  .groups{grid-template-columns:1fr}
   .duty{grid-template-columns:auto 1fr}
   .duty-amt{grid-column:1/-1;text-align:left;display:flex;gap:10px;align-items:baseline}
   .row{column-gap:10px}
@@ -189,7 +200,7 @@ footer p{margin:0 0 6px}
     </div>
   </header>
 
-  <section class="total" aria-label="ยอดรวมทั้งทริป">
+  <section class="grand" aria-label="ยอดรวมทั้งทริป">
     <div class="lbl">💴 รวมทั้งทริป <span>· ไม่รวม duty free</span></div>
     <div class="big num" id="grandB"></div>
     <div class="yen num" id="grandY"></div>
@@ -201,20 +212,16 @@ footer p{margin:0 0 6px}
     <input id="rate" type="number" step="0.0001" min="0.01" value="0.2122" inputmode="decimal"> บาท
   </label>
 
-  <div class="cards">
-    <div class="card" style="--c:var(--kaki)">
-      <span class="deco" aria-hidden="true">🍂</span>
-      <div class="t">🍜 ค่าเที่ยว<span class="kj">旅費</span></div>
-      <div class="d">ของกิน + ค่าเดินทาง + โรงแรม</div>
-      <div class="b num" id="g1B"></div>
-      <div class="y num" id="g1Y"></div>
+  <div class="boxes" id="boxes"></div>
+
+  <div class="groups">
+    <div class="grp" style="--c:var(--kaki)">
+      <span>🍂 ค่าเที่ยว<small>กิน + เดินทาง + โรงแรม</small></span>
+      <span class="r num"><b id="g1B"></b><small id="g1Y"></small></span>
     </div>
-    <div class="card" style="--c:var(--momiji)">
-      <span class="deco" aria-hidden="true">🍁</span>
-      <div class="t">🛍️ ช้อปปิ้ง + ตั๋วบิน<span class="kj">買い物</span></div>
-      <div class="d">ตั๋วเครื่องบินจ่ายเป็นบาท</div>
-      <div class="b num" id="g2B"></div>
-      <div class="y num" id="g2Y"></div>
+    <div class="grp" style="--c:var(--momiji)">
+      <span>🛍️ ช้อปปิ้ง + ตั๋วบิน<small>ไม่รวม duty free</small></span>
+      <span class="r num"><b id="g2B"></b><small id="g2Y"></small></span>
     </div>
   </div>
 
@@ -355,20 +362,27 @@ function render() {
   $("dutyB").textContent = fb(duty.b);
   $("dutyY").textContent = fy(duty.y);
 
-  // แถบสัดส่วน
+  // 5 หมวดหลัก (ฝากกระเป๋ารวมในค่าเดินทาง) รวมกันเท่ายอดทริป
   const parts = [
-    { e: "🍜", l: "ของกิน", b: food.b, c: "var(--food)" },
-    { e: "🚃", l: "ค่าเดินทาง", b: trans.b, c: "var(--trans)" },
-    { e: "🧳", l: "ฝากกระเป๋า", b: bag.b, c: "var(--bag)" },
-    { e: "🏨", l: "โรงแรม", b: hotel, c: "var(--hotel)" },
-    { e: "🛍️", l: "ช้อปปิ้ง", b: shop.b, c: "var(--shop)" },
-    { e: "✈️", l: "ตั๋วเครื่องบิน", b: FLIGHT_THB, c: "var(--flight)" },
+    { e: "🍜", l: "ค่ากิน", kj: "食費", n: "ของกิน 7 วัน · รวมบุฟเฟต์ปิ้งย่าง", y: food.y, b: food.b, c: "var(--food)", approx: food.approx },
+    { e: "🚃", l: "ค่ารถไฟ", kj: "交通費", n: "รถไฟ · จักรยาน · ฝากกระเป๋า", y: trans.y + bag.y, b: trans.b + bag.b, c: "var(--trans)", approx: false },
+    { e: "🏨", l: "ค่าโรงแรม", kj: "宿泊費", n: `${nights} คืน · จ่ายผ่าน Agoda`, y: hotel / r, b: hotel, c: "var(--hotel)", approx: true },
+    { e: "🛍️", l: "ค่าช้อปปิ้ง", kj: "買い物", n: "ไม่รวม duty free", y: shop.y, b: shop.b, c: "var(--shop)", approx: shop.approx },
+    { e: "✈️", l: "ค่าตั๋วเครื่องบิน", kj: "航空券", n: "จ่ายเป็นบาท", y: FLIGHT_THB / r, b: FLIGHT_THB, c: "var(--flight)", approx: true },
   ];
   const pct = p => (p.b / grandB * 100);
   $("stack").setAttribute("aria-label", "สัดส่วนค่าใช้จ่าย: " + parts.map(p => `${p.l} ${pct(p).toFixed(0)}%`).join(", "));
   $("stack").innerHTML = parts.map(p => `<span style="width:${pct(p)}%;background:${p.c}" title="${p.l} ${fb(p.b)}"></span>`).join("");
   $("legend").innerHTML = parts.map(p =>
-    `<div class="lg"><span class="dot" style="background:${p.c}"></span><span>${p.e} ${p.l}<small>${pct(p).toFixed(0)}%</small></span><span class="num">${fb(p.b)}</span></div>`).join("");
+    `<span class="lg"><span class="dot" style="background:${p.c}"></span>${p.e}<small>${pct(p).toFixed(0)}%</small></span>`).join("");
+  $("boxes").innerHTML = parts.map(p => `<div class="bx" style="--c:${p.c}">
+    <span class="deco" aria-hidden="true">${p.e}</span>
+    <div class="t">${p.e} ${p.l}<span class="kj">${p.kj}</span></div>
+    <div class="d">${p.n}</div>
+    <div class="b num">${fb(p.b)}</div>
+    <div class="y num">${p.approx ? "≈ " : ""}${fy(p.y)}</div>
+    <span class="pc">${pct(p).toFixed(0)}% ของยอดรวม</span>
+  </div>`).join("");
 
   $("g1Table").innerHTML = head
     + row({ icon: "🍜", c: "var(--food)", label: "ของกิน", note: "7 วัน · รวมบุฟเฟต์ปิ้งย่างที่จ่ายเป็นบาท", y: food.y, b: food.b, approx: food.approx })
